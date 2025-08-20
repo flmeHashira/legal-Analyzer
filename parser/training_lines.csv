@@ -1,0 +1,626 @@
+page_num,text,avg_font_size,is_bold,is_upper,text_length,label
+1,"THE COMPANIES ACT, 2013",8.99,FALSE,TRUE,23,HEADING
+1,ACT NO. 18 OF 2013,8.99,FALSE,TRUE,18,HEADING
+1,"[29 th August, 2013.]",8.99,FALSE,FALSE,21,BODY
+1,An Act to consolidate and amend the law relating to companies.,8.99,FALSE,FALSE,62,BODY
+1,BE it enacted by Parliament in the Sixty-fourth Year of the Republic of India as follows: —,8.99,FALSE,FALSE,91,BODY
+1,CHAPTER I,8.99,FALSE,TRUE,9,CHAPTER
+1,PRELIMINARY,8.99,FALSE,TRUE,11,CHAPTER
+1,"1. Short title, extent, commencement and application. — ( 1 ) This Act may be called the Companies Act, 2013.",8.99,TRUE,FALSE,109,TOPIC
+1,( 2 ) It extends to the whole of India.,8.99,FALSE,FALSE,39,BODY
+1,( 3 ) This section shall come into force at once and the remaining provisions of this Act shall come into force on such date 1 as,8.02,FALSE,FALSE,129,BODY
+1,"the Central Government may, by notification in the Official Gazette, appoint and *different dates may",8.12,FALSE,FALSE,101,BODY
+1,"*1. 12th September, 2013 – S. 2( 1 ),( 3 ), ( 4 ), ( 5 ), ( 6 ), ( 8 ), ( 9 ), ( 10 ), ( 11 ), ( 12 ), ( 14 ), ( 15 ), ( 16 ), ( 17 ), ( 18 ), ( 19 ), ( 20 ), ( 21 ), ( 22 ), ( 24 ), ( 25 ), ( 26 ), ( 27 ), ( 28 ), ( 29 ) [except",6.28,TRUE,FALSE,229,BODY
+1,"sub-clause (iv)], ( 30 ), ( 32 ), ( 33 ), ( 34 ), ( 35 ), ( 36 ), ( 37 ), ( 38 ), ( 39 ), ( 40 ), ( 43 ), ( 44 ), ( 45 ), ( 46) , ( 49 ), ( 50 ), ( 51 ), ( 52 ), ( 53 ), ( 54 ), ( 55 ), ( 56 ), ( 57 ), ( 58 ), ( 59 ), ( 60 ), ( 61 ), ( 63 ),",6.28,FALSE,FALSE,241,BODY
+1,"( 64 ), ( 65 ), ( 66 ), ( 67 ) [except sub-clause ( ix )], ( 84 ), ( 86 ),( 87 ) [except the proviso and Explanation ( d )], ( 88 ), ( 89 ), ( 90 ), ( 91 ), ( 92 ), ( 93 ), ( 94 ), ( 95 ); s. 19, 21, 22, 23",6.28,FALSE,FALSE,206,BODY
+1,"[except clause ( b ) of sub-section ( 1 ) and sub-section ( 2 )], 24, 25 [except sub-section ( 3 )], 29, 30, 31, 32, 33 [except sub-section ( 3 )], 34, 35 [except clause ( e ) of sub-",6.28,FALSE,FALSE,183,BODY
+1,"section (1 )], 36, 37, 38 39 [except sub-section ( 4 )], 40 [except sub-section ( 6 )], 44, 45, 49, 50, 51, 57, 58, 59, 60, 65, 69, 70 [except sub-section ( 2 )], 86, 91, 100 [except",6.28,FALSE,FALSE,182,BODY
+1,"sub-section ( 6 )], 102, 103, 104, 105 [except the third and fourth provisos of sub-section ( 1 ) and sub-section ( 7 )], 106, 107, 111, 112, 113 [except clause ( b ) of sub-",6.28,FALSE,FALSE,174,BODY
+1,"section ( 1) ], 114, 116, 127, 133, 161 [except sub-section ( 2 )], 162, 163, 176, 180, 181, 182, 183, 185, 192, 194,195, 202, 379, 382, 383, 386 [except clause ( a) ], 394,",6.28,FALSE,FALSE,173,BODY
+1,"405, 407, 408, 409, 410, 411, 412, 413, 414, 439, 443, 444, 445, 446, 447, 448, 449, 450, 451, 452, 453, 456, 457, 458, 459, 460, 461, 462, 463, 467, 468, 469, 470,",6.28,FALSE,FALSE,164,BODY
+1,"vide notification No. S.O. 2754(E), dated 12th September, 2013, see Gazette of India, Extraordinary, Part II, sec. 3( ii ).",6.28,FALSE,FALSE,123,BODY
+1,"1st April 2014 – S. 2( 2 ), ( 7 ), ( 13 ), ( 31 ), ( 41 ), ( 42 ), ( 47 ), ( 48 ), ( 62 ), ( 83 ), ( 85 ) and Explanation ( d ) of clause ( 87 ); ss. 3, 4, 5, 6; s. 7 [except sub-section ( 7 )]; s. 8 [except",6.28,TRUE,FALSE,207,BODY
+1,"sub-section ( 9 )]; ss. 9, 10, 11, 12 and 13; s. 14 [except second proviso to sub-section ( 1 ) and sub-section ( 2 )]; ss. 15, 16, 17 and 18; section 20; clause ( b ) of sub-section",6.28,FALSE,FALSE,182,BODY
+1,"( 1 ) and sub-section ( 2 ) of section 23; sub-section ( 3 ) of section 25; ss. 26, 27 and 28; sub-section ( 3 ) of s. 33; clause ( e ) of sub-section ( 1 ) of s. 35; sub-section ( 4 ) of s.",6.28,FALSE,FALSE,190,BODY
+1,"39; sub-section ( 6 ) of s. 40; ss. 41, 42 and 43; ss. 46 and 47; ss. 52, 53 and 54; s. 55 [except sub-section ( 3 )]; s. 56; s. 61 [except proviso to clause ( b ) of sub-section ( 1 )];",6.28,FALSE,FALSE,186,BODY
+1,s. 62 [except sub-sections ( 4 ) to ( 6 )]; ss. 63 and 64; ss. 67 and 68; sub-section ( 2 ) of section 70; s. 71 [except sub-sections ( 9 ) to ( 11 )]; ss. 72 and 73; sub-section ( 1 ) of,6.28,FALSE,FALSE,187,BODY
+1,"s. 74; ss. 76, 77, 78, 79, 80, 81, 82, 83, 84 and 85; ss. 87, 88, 89 and 90; ss. 92, 93, 94, 95 and 96; sub-section ( 6 ) of s.100; s. 101; third and fourth provisos to sub-",6.28,FALSE,FALSE,173,BODY
+1,"section ( 1 ) and sub-section ( 7 ) of s. 105; ss. 108, 109 and 110; clause ( b ) of sub-section ( 1 ) of s. 113; s. 115; ss. 117and 118; s. 119 [except sub-section ( 4 )]; ss. 120,",6.28,FALSE,FALSE,181,BODY
+1,"121, 122 and 123; s. 126; ss. 128 and 129; s.134; ss. 136, 137, 138 and 139; s. 140 [except second proviso to sub-section ( 4 ) and sub-section ( 5 )]; ss. 141, 142, 143, 144,",6.28,FALSE,FALSE,175,BODY
+1,"145, 146, 147, 148, 149, 150, 151, 152, 153, 154, 155, 156, 157, 158, 159 and 160; sub-section ( 2 ) of s. 161; ss. 164, 165, 166, 167 and 168; s. 169 [except sub-section",6.28,FALSE,FALSE,170,BODY
+1,"( 4 )]; ss. 170, 171, 172, 173, 174 and 175; ss. 177, 178 and 179; s. 184; ss. 186, 187, 188, 189, 190 and 191; s. 193; ss. 196, 197, 198, 199, 200 and 201; ss. 203, 204,",6.28,FALSE,FALSE,170,BODY
+1,"205, 206, 207, 208, 209, 210 and 211; s. 212 [except references of sub-section ( 10 ) of s. 66, sub-section ( 5 ) of s. 140], s. 213, sub-section ( 1 ) of s. 251 and sub-section",6.28,FALSE,FALSE,177,BODY
+1,"( 3 ) of s. 339 made in sub-section ( 6 ) and also sub-sections ( 8 ) to ( 10 )]; ss. 214, 215; s. 216 [except sub-section ( 2 )]; s. 217; ss. 219 and 220; s. 223; s. 224 [except sub-",6.28,FALSE,FALSE,183,BODY
+1,"sections ( 2 ) and ( 5 )]; s. 225; ss. 228 and 229; ss. 366, 367, 368and 369; s. 370 (except the proviso); s. 371; s. 374; ss. 380and 381; ss. 384and 385; clause ( a ) of s. 386;",6.28,FALSE,FALSE,178,BODY
+1,"ss. 387, 388, 389and 390; sub-section ( 1 ) of s. 391; ss. 392 and 393; ss. 395, 396, 397and 398; s. 399 [except reference of word Tribunal in sub-section ( 2 )]; ss. 400,",6.28,FALSE,FALSE,171,BODY
+1,"401, 402, 403and 404; s. 406; s. 442; ss. 454and 455; s. 464; Schs. I, II, III, IV, V and VI, vide notification No. S.O. 902(E), dated 26th March, 2014, see Gazette of",6.28,FALSE,FALSE,167,BODY
+1,"India, Extraordinary, Part II, sec.3( ii ).",6.28,FALSE,FALSE,43,BODY
+1,"1st April, 2014 – S. 135 and Sch. VII, vide notification No. S.O. 582(E), dated 27th February, 2014, see Gazette of India, Extraordinary, Part II, sec. 3 (ii).",6.28,TRUE,FALSE,159,BODY
+1,"6th June, 2014 – Sub-sections ( 2 ) and ( 3 ) of s. 74, vide notification No. S.O. 1459(E), dated 6th June, 2014, see Gazette of India, Extraordinary, Part II, sec. 3( ii ).",6.28,TRUE,FALSE,173,BODY
+1,"13th January, 2016 – S. 125( 5 ), (6) [except with respect to the manner of administration of the Investor Education and Protection Fund] and (7), vide notification No.",6.28,TRUE,FALSE,168,BODY
+1,"S.O. 125(E), see Gazette of India, Extraordinary, Part II, sec. 3(ii).",6.28,FALSE,FALSE,70,BODY
+1,th,4.12,FALSE,FALSE,2,BODY
+1,"18th May, 2016 -S. 2( 29 ) ( iv ), ss. 435 to 438 and s. 440, vide notification No. S.O. 1795(E), dated 18 May, 2016, see Gazette of India, Extraordinary, Part II, sec. 3(ii).",6.28,TRUE,FALSE,175,BODY
+1,"1st June, 2016 -S. 7( 7 ) [except clause ( c ) and ( d )], s. 14( 2 ), second proviso to sub-section ( 1 ) of s. 14, s. 55 ( 3 ), proviso to clause ( b ) of sub-section ( 1 ) of s. 61; s. 62 ( 4 )",6.28,TRUE,FALSE,196,BODY
+1,"to ( 6 ), s. 71 ( 9 ), ( 10 ) and ( 11 ), s. 75; s. 97; s. 98 and s. 99; S. 119 ( 4 ), s. 130 and 131; second proviso to sub-section ( 4 ) and ( 5 ) of s. 140, s. 169( 4 ), s. 213, s. 216 ( 2 ), s.",6.28,FALSE,FALSE,197,BODY
+1,"218, s. 221, s. 222, s. 224 ( 5 ), ss. 241, 242 [except clause ( b ) of sub-section ( 1 ), cls. ( c ) and ( g ) of sub-section ( 2 )], 243, 244 and 245; Reference of word “Tribunal” s.",6.28,FALSE,FALSE,184,BODY
+1,"399 ( 2 ),ss. 415 to 433, s. 434 ( 1 ) ( a ) and ( b ) & (2), s. 441and 466, vide notification No. S.O. 1934(E), dated 1 st June, 2016, see Gazette of India, Extraordinary Part II,",6.23,FALSE,FALSE,180,BODY
+1,sec. 3(ii).,6.28,FALSE,FALSE,11,BODY
+1,"7th September, 2016 -S. 124, s. 125 (1) to (4), (6) [with respect to the manner of administration of the Investor Education and Protection Fund] and (8) to (11) vide",6.28,TRUE,FALSE,165,BODY
+1,th,4.12,FALSE,FALSE,2,BODY
+1,"Notification No. S.O. 2866(E), dated 5 September, 2016, see Gazette of India, Extraordinary, Part II, sec. 3(ii).",6.28,FALSE,FALSE,113,BODY
+1,"9th September, 2016 - S. 227, 242 (1) (b), (2) (c) & (g), s. 246, Ss. 337 to 341 (to the extent of their applicability for s. 246), vide notification No. S.O. 2912(E), dated",6.28,TRUE,FALSE,173,BODY
+1,"9 th September, 2016, see Gazette of India, Extraordinary, Part II, sec. 3(ii).",6.12,FALSE,FALSE,79,BODY
+1,"15th December, 2016 -S. 2 (23), s.7 ( 7 ) ( c ) and ( d ), s. 8 (9), s. 48, s. 66, s. 224 (2), s. 226, s. 230 [except sub-section ( 11 ) and ( 12 )], and ss. 231 to 233, ss. 235 to 240,",6.28,TRUE,FALSE,185,BODY
+1,"ss. 270 to 288, ss. 290 to 303, ss. 324, ss. 326 to 365, proviso to s. 370, ss. 372 to 373, ss. 375 to 378, s. 391 ( 2 ), s. 434 ( 1 ) cl. (c) vide notification No. S.O. 3677(E),",6.28,FALSE,FALSE,178,BODY
+1,"dated 7 th December, 2016, see Gazette of India, Extraordinary Part II, sec. 3 (ii).",6.14,FALSE,FALSE,84,BODY
+1,"26th December, 2016 -Ss. 248 to 252, vide notification No. S.Ó. 4167(E), dated 26 th December, 2016, see Gazette of India, Extraordinary Part II, sec. 3 (ii).",6.2,TRUE,FALSE,158,BODY
+1,th,4.12,FALSE,FALSE,2,BODY
+1,"13th April, 2017 - S. 234, vide notification No. S.O. 1182(E), dated 13 April, 2017, see Gazette of India, Extraordinary Part II, sec. 3 (ii).",6.28,TRUE,FALSE,142,BODY
+1,"24th August, 2017 -S. 212 ( 8 ), ( 9 ) and ( 10 ), vide notification No. S.O. 2751(E), dated 24 th August, 2017, see Gazette of India, Extraordinary Part II, sec. 3 (ii).",6.22,TRUE,FALSE,170,BODY
+1,"20th September, 2017 -Proviso to clause (87) of s. 2, vide notification No. S.O. 3086(E), dated 20 th September, 2017, see Gazette of India, Extraordinary Part II, sec. 3 (ii).",5.77,TRUE,FALSE,176,BODY
+1,th th,4.12,TRUE,FALSE,5,BODY
+1,"18 October, 2017 -S. 247, vide notification No. S.O. 3393(E), dated 18 October, 2017, see Gazette of India, Extraordinary Part II, sec. 3(ii).",6.28,TRUE,FALSE,142,BODY
+1,"21st March, 2018 - S. 132 ( 3 ) and (11), vide notification No. S.O. 1316(E), dated 21 st March, 2018, see Gazette of India, Extraordinary Part II, sec. 3(ii).",6.21,TRUE,FALSE,159,BODY
+1,st,4.12,FALSE,FALSE,2,BODY
+1,"1st October, 2018 - S.132 (1) and (12), vide notification No. S.O. 5098(E), dated 1 October, 2018, see Gazette of India, Extraordinary Part II, sec. 3(ii).",6.28,TRUE,FALSE,155,BODY
+1,"24th October, 2018 - S. 132 (2), (4), (5), (10), (13), (14) and (15) vide notification No. S.O. 5385(E), dated 24 th October, 2018, see Gazette of India, Extraordinary Part",6.18,TRUE,FALSE,172,BODY
+1,"II, sec. 3(ii).",5.42,FALSE,FALSE,15,BODY
+1,"30th January, 2019- S.465 in so far as they relate to the repeal of the Companies Act, 1956 (1 of 1956) [that in except in so far as they relate to the repeal of the Registration of Companies (Sikkim)",5.42,TRUE,FALSE,200,BODY
+1,"Act, 1961 (Sikkim Act 8 of 1961)] vide notification No. S.O. 560(E), dated 30th January 2019, see Gazette of India, Extraordinary Part II, sec. 3(ii).",5.42,FALSE,FALSE,150,BODY
+1,"1st July, 2019- S. 81, vide notification No. S.O. 2269(E), dated 15th August, 2019, see Gazette of India, Extraordinary Part II, sec. 3(ii).",5.42,TRUE,FALSE,140,BODY
+1,"3rd February, 2020 -S. 230 (11) and (12), vide notification No. S.O. 525(E), dated 3rd February, 2020, see Gazette of India, Extraordinary, Part II, sec. 3(ii).",5.42,TRUE,FALSE,160,BODY
+1,st,3.57,TRUE,FALSE,2,BODY
+1,"21 December, 2020 -S. 1, 3,6 to 10 (both inclusive), s. 12 to 17 (both inclusive), clauses (a) and (b) of s. 18, s. 19 to 21 (both inclusive), clause (i) of s. 22, 24,26, 28 to 31 (both inclusive), s. 33",5.42,TRUE,FALSE,203,BODY
+1,"to 39 (both inclusive), s. 41 to 44 (both inclusive), s. 46 to 51 (both inclusive), s. 54, 57, 61 and 63, vide notification No. S.O. 4646(E), dated 21 st December, 2020, see Gazette of India, Extraordinary,",5.37,FALSE,FALSE,206,BODY
+1,"Part II, sec. 3 (ii).",5.42,FALSE,FALSE,21,BODY
+1,"*. Vide Notification No. S.O. 3912 (E), dated 30th October, 2019, this Act is made applicable to the Union territory of Jammu and Kashmir and the Union territory of Ladakh.",5.42,FALSE,FALSE,172,BODY
+1,"22 nd January, 2021 - Sections. 2, 11, clause ( c ) of sec. 18, Clause ( ii ) Sec. 22, Sections. 25, 27, 53, 55, 58, 60, 59, 62, 64, 65, vide notification No. S.O. 325(E), dated 21 st January, 2021, see Gazette",5.33,TRUE,FALSE,210,BODY
+1,"of India, Extraordinary, Part II, sec. 3 ( ii ).",5.42,FALSE,FALSE,48,BODY
+1,"11 th February, 2021 - Sections. 52 & 66, vide notification No. S.O. 644(E), dated 11 th February, 2021, see Gazette of India, Extraordinary, Part II, sec. 3 ( ii ).",5.3,TRUE,FALSE,165,BODY
+1,"18 th March, 2021- Sections. 32 & 40, vide notification No. S.O. 1255(E), dated 18 th March, 2021, see Gazette of India, Extraordinary, Part II, sec. 3 ( ii ).",5.29,TRUE,FALSE,159,BODY
+1,"1 st September, 2021 - nd",5.47,TRUE,FALSE,25,BODY
+1,"Section. 4, vide notification No. S.O. 2904(E), dated 22 July, 2021, see Gazette of India, Extraordinary, Part II, sec. 3 ( ii ).",5.42,FALSE,FALSE,129,BODY
+1,"1 st July, 2022 - Section. 56, vide notification No. S.O. 148(E), dated 11 th January, 2022, see Gazette of India, Extraordinary, Part II, sec. 3 ( ii ).",5.43,TRUE,FALSE,153,BODY
+1,"30 th October, 2023- Section. 5, vide notification No. S.O. 4744(E), dated 30 th October, 2023, see Gazette of India, Extraordinary, Part II, sec. 3 ( ii ).",5.28,TRUE,FALSE,156,BODY
+1,16,8.99,FALSE,FALSE,2,BODY
+2,be appointed for different provisions of this Act and any reference in any provision to the commencement,9.97,FALSE,FALSE,104,BODY
+2,of this Act shall be construed as a reference to the coming into force of that provision.,9.97,FALSE,FALSE,89,BODY
+2,( 4 ) The provisions of this Act shall apply to —,9.97,FALSE,FALSE,49,BODY
+2,( a ) companies incorporated under this Act or under any previous company law;,9.97,FALSE,FALSE,78,BODY
+2,"( b ) insurance companies, except in so far as the said provisions are inconsistent with the provisions",9.97,FALSE,FALSE,103,BODY
+2,"of the Insurance Act, 1938 (4 of 1938) or the Insurance Regulatory and Development Authority Act,",9.97,FALSE,FALSE,97,BODY
+2,1999 (41 of 1999);,9.97,FALSE,FALSE,18,BODY
+2,"( c ) banking companies, except in so far as the said provisions are inconsistent with the provisions",9.97,FALSE,FALSE,101,BODY
+2,"of the Banking Regulation Act, 1949 (10 of 1949);",9.97,FALSE,FALSE,49,BODY
+2,"( d ) companies engaged in the generation or supply of electricity, except in so far as the said",9.97,FALSE,FALSE,96,BODY
+2,"provisions are inconsistent with the provisions of the Electricity Act, 2003 (36 of 2003);",9.97,FALSE,FALSE,90,BODY
+2,"( f ) such body corporate, incorporated by any Act for the time being in force, as the Central",9.97,FALSE,FALSE,94,BODY
+2,"Government may, by notification, specify in this behalf, subject to such exceptions, modifications or",9.97,FALSE,FALSE,101,BODY
+2,"adaptation, as may be specified in the notification.",9.97,FALSE,FALSE,52,BODY
+2,"2. Definitions. — In this Act, unless the context otherwise requires, —",9.97,TRUE,FALSE,71,TOPIC
+2,( 1 ) “ abridged prospectus ” means a memorandum containing such salient features of a prospectus as,9.97,FALSE,FALSE,100,BODY
+2,may be specified by the Securities and Exchange Board by making regulations in this behalf;,9.97,FALSE,FALSE,91,BODY
+2,( 2 ) “ accounting standards ” means the standards of accounting or any addendum thereto for,9.97,FALSE,FALSE,92,BODY
+2,companies or class of companies referred to in section 133;,9.97,FALSE,FALSE,59,BODY
+2,"( 3 ) “ alter ” or “ alteration ” includes the making of additions, omissions and substitutions;",9.97,FALSE,FALSE,96,BODY
+2,( 4 ) “ Appellate Tribunal ” means the National Company Law Appellate Tribunal constituted under,9.97,FALSE,FALSE,96,BODY
+2,section 410;,9.97,FALSE,FALSE,12,BODY
+2,( 5 ) “ articles ” means the articles of association of a company as originally framed or as altered from,9.97,FALSE,FALSE,105,BODY
+2,time to time or applied in pursuance of any previous company law or of this Act;,9.97,FALSE,FALSE,80,BODY
+2,"( 6 ) “ associate company ” , in relation to another company, means a company in which that other",9.97,FALSE,FALSE,97,BODY
+2,"company has a significant influence, but which is not a subsidiary company of the company having such",9.97,FALSE,FALSE,101,BODY
+2,influence and includes a joint venture company.,9.97,FALSE,FALSE,47,BODY
+2,"1 [ Explanation . — For the purpose of this clause, —",9.54,FALSE,FALSE,53,BODY
+2,( a ) the expression “ significant influence ” means control of at least twenty per cent. of total voting,9.97,FALSE,FALSE,105,BODY
+2,"power, or control of or participation in business decisions under an agreement;",9.97,FALSE,FALSE,79,BODY
+2,( b ) the expression “ joint venture ” means a joint arrangement whereby the parties that have joint,9.97,FALSE,FALSE,100,BODY
+2,control of the arrangement have rights to the net assets of the arrangement;],9.97,FALSE,FALSE,77,BODY
+2,( 7 ) “ auditing standards ” means the standards of auditing or any addendum thereto for companies or,9.97,FALSE,FALSE,101,BODY
+2,class of companies referred to in sub-section ( 10 ) of section 143;,9.97,FALSE,FALSE,68,BODY
+2,( 8 ) “ authorised capital ” or “ nominal capital ” means such capital as is authorised by the,9.97,FALSE,FALSE,94,BODY
+2,memorandum of a company to be the maximum amount of share capital of the company;,9.97,FALSE,FALSE,81,BODY
+2,( 9 ) “ banking company ” means a banking company as defined in clause ( c ) of section 5 of the Banking,9.97,FALSE,FALSE,104,BODY
+2,"Regulation Act, 1949 (10 of 1949);",9.97,FALSE,FALSE,34,BODY
+2,"( 10 ) “ Board of Directors ” or “ Board ” , in relation to a company, means the collective body of the",9.97,FALSE,FALSE,103,BODY
+2,directors of the company;,9.97,FALSE,FALSE,25,BODY
+2,"( 11 ) “ body corporate ” or “ corporation ” includes a company incorporated outside India, but does not",9.97,FALSE,FALSE,104,BODY
+2,include —,9.97,FALSE,FALSE,9,BODY
+2,( i ) a co-operative society registered under any law relating to co-operative societies; and,9.97,FALSE,FALSE,93,BODY
+2,"( ii ) any other body corporate (not being a company as defined in this Act), which the Central",9.97,FALSE,FALSE,95,BODY
+2,"Government may, by notification, specify in this behalf;",9.97,FALSE,FALSE,56,BODY
+2,"( 12 ) “ book and paper ” and “ book or paper ” include books of account, deeds, vouchers, writings,",9.97,FALSE,FALSE,100,BODY
+2,"documents, minutes and registers maintained on paper or in electronic form;",9.97,FALSE,FALSE,75,BODY
+2,( 13 ) “ books of account ” includes records maintained in respect of —,9.97,FALSE,FALSE,71,BODY
+2,"1. The Explanation subs. by Act 1 of 2018, s. 2 (w.e.f. 7-5-2018).",8.12,FALSE,FALSE,66,BODY
+2,17,8.99,FALSE,FALSE,2,BODY
+3,( i ) all sums of money received and expended by a company and matters in relation to which the,9.97,FALSE,FALSE,95,BODY
+3,receipts and expenditure take place;,9.97,FALSE,FALSE,36,BODY
+3,( ii ) all sales and purchases of goods and services by the company;,9.97,FALSE,FALSE,68,BODY
+3,( iii ) the assets and liabilities of the company; and,9.97,FALSE,FALSE,54,BODY
+3,( iv ) the items of cost as may be prescribed under section 148 in the case of a company which,9.97,FALSE,FALSE,94,BODY
+3,belongs to any class of companies specified under that section;,9.97,FALSE,FALSE,63,BODY
+3,"( 14 ) “ branch office ” , in relation to a company, means any establishment described as such by the",9.97,FALSE,FALSE,101,BODY
+3,company;,9.97,FALSE,FALSE,8,BODY
+3,"( 15 ) “ called-up capital ” means such part of the capital, which has been called for payment;",9.97,FALSE,FALSE,95,BODY
+3,( 16 ) “ charge ” means an interest or lien created on the property or assets of a company or any of its,9.97,FALSE,FALSE,104,BODY
+3,undertakings or both as security and includes a mortgage;,9.97,FALSE,FALSE,57,BODY
+3,( 17 ) “ chartered accountant ” means a chartered accountant as defined in clause ( b ) of sub-section ( 1 ),9.97,FALSE,FALSE,108,BODY
+3,"of section 2 of the Chartered Accountants Act, 1949 (38 of 1949) who holds a valid certificate of practice",9.97,FALSE,FALSE,106,BODY
+3,under sub-section ( 1 ) of section 6 of that Act;,9.97,FALSE,FALSE,49,BODY
+3,"( 18 ) “ Chief Executive Officer ” means an officer of a company, who has been designated as such by",9.97,FALSE,FALSE,100,BODY
+3,it;,9.97,FALSE,FALSE,3,BODY
+3,( 19 ) “ Chief Financial Officer ” means a person appointed as the Chief Financial Officer of a company;,9.97,FALSE,FALSE,104,BODY
+3,( 20 ) “ company ” means a company incorporated under this Act or under any previous company law;,9.97,FALSE,FALSE,97,BODY
+3,( 21 ) “ company limited by guarantee ” means a company having the liability of its members limited,9.97,FALSE,FALSE,99,BODY
+3,by the memorandum to such amount as the members may respectively undertake to contribute to the,9.97,FALSE,FALSE,95,BODY
+3,assets of the company in the event of its being wound up;,9.97,FALSE,FALSE,57,BODY
+3,( 22 ) “ company limited by shares ” means a company having the liability of its members limited by,9.97,FALSE,FALSE,99,BODY
+3,"the memorandum to the amount, if any, unpaid on the shares respectively held by them;",9.97,FALSE,FALSE,85,BODY
+3,1,6.28,FALSE,FALSE,1,BODY
+3,[( 23 ) “ Company Liquidator ” means a person appointed by the Tribunal as the Company Liquidator,9.97,FALSE,FALSE,97,BODY
+3,in accordance with the provisions of section 275 for the winding up of a company under this Ac ],9.97,FALSE,FALSE,96,BODY
+3,t;,8.99,FALSE,FALSE,2,BODY
+3,( 24 ) “ company secretary ” or “ secretary ” means a company secretary as defined in clause ( c ) of sub-,9.97,FALSE,FALSE,106,BODY
+3,"section ( 1 ) of section 2 of the Company Secretaries Act, 1980 (56 of 1980) who is appointed by a",9.97,FALSE,FALSE,98,BODY
+3,company to perform the functions of a company secretary under this Act;,9.97,FALSE,FALSE,71,BODY
+3,( 25 ) “ company secretary in practice ” means a company secretary who is deemed to be in practice,9.97,FALSE,FALSE,98,BODY
+3,"under sub-section ( 2 ) of section 2 of the Company Secretaries Act, 1980 (56 of 1980);",9.97,FALSE,FALSE,87,BODY
+3,( 26 ) “ contributory ” means a person liable to contribute towards the assets of the company in the,9.97,FALSE,FALSE,100,BODY
+3,event of its being wound up.,9.97,FALSE,FALSE,28,BODY
+3,"Explanation. — For the purposes of this clause, it is hereby clarified that a person holding fully paid-",9.97,FALSE,FALSE,104,BODY
+3,up shares in a company shall be considered as a contributory but shall have no liabilities of a contributory,9.97,FALSE,FALSE,108,BODY
+3,under the Act whilst retaining rights of such a contributory;,9.97,FALSE,FALSE,61,BODY
+3,( 27 ) “ control ” shall include the right to appoint majority of the directors or to control the management,9.97,FALSE,FALSE,108,BODY
+3,"or policy decisions exercisable by a person or persons acting individually or in concert, directly or",9.97,FALSE,FALSE,101,BODY
+3,"indirectly, including by virtue of their shareholding or management rights or shareholders agreements",9.97,FALSE,FALSE,101,BODY
+3,or voting agreements or in any other manner;,9.97,FALSE,FALSE,44,BODY
+3,).,8.99,FALSE,FALSE,2,BODY
+3,"1. Subs. by Act 31 of 2016, s. 255 and the Eleventh Schedule, for clause ( 23 ) (w.e.f. 15-11-2016",8.12,FALSE,FALSE,98,BODY
+3,18,8.99,FALSE,FALSE,2,BODY
+4,1 [( 28 ) “ Cost Accountant ” means a cost accountant as defined in clause ( b ) of sub-section ( 1 ) of section 2 of,9.59,FALSE,FALSE,117,BODY
+4,"the Cost and Works Accountants Act, 1959 (23 of 1959) and who holds a valid certificate of practice under",9.5,FALSE,FALSE,105,BODY
+4,;],9.97,FALSE,FALSE,2,BODY
+4,sub-section ( 1 ) of section 6 of that Act,8.99,FALSE,FALSE,42,BODY
+4,( 29 ) “ court ” means —,9.97,FALSE,FALSE,24,BODY
+4,( i ) the High Court having jurisdiction in relation to the place at which the registered office of the,9.97,FALSE,FALSE,103,BODY
+4,"company concerned is situate, except to the extent to which jurisdiction has been conferred on any",9.97,FALSE,FALSE,98,BODY
+4,district court or district courts subordinate to that High Court under sub-clause ( ii );,9.97,FALSE,FALSE,89,BODY
+4,"( ii ) the district court, in cases where the Central Government has, by notification, empowered any",9.97,FALSE,FALSE,100,BODY
+4,"district court to exercise all or any of the jurisdictions conferred upon the High Court, within the scope",9.97,FALSE,FALSE,106,BODY
+4,of its jurisdiction in respect of a company whose registered office is situate in the district;,9.97,FALSE,FALSE,95,BODY
+4,( iii ) the Court of Session having jurisdiction to try any offence under this Act or under any,9.97,FALSE,FALSE,95,BODY
+4,previous company law;,9.97,FALSE,FALSE,21,BODY
+4,( iv ) the Special Court established under section 435;,9.97,FALSE,FALSE,55,BODY
+4,( v ) any Metropolitan Magistrate or a Judicial Magistrate of the First Class having jurisdiction to,9.97,FALSE,FALSE,100,BODY
+4,try any offence under this Act or under any previous company law;,9.97,FALSE,FALSE,65,BODY
+4,"( 30 ) “ debenture ” includes debenture stock, bonds or any other instrument of a company evidencing a",9.76,FALSE,FALSE,102,BODY
+4,"debt, whether constituting a charge on the assets of the company or not:",9.97,FALSE,FALSE,72,BODY
+4,2 [Provided that —,9.05,FALSE,FALSE,18,BODY
+4,"( a ) the instruments referred to in Chapter III-D of the Reserve Bank of India Act, 1934 (2 of 1934);",9.97,FALSE,FALSE,102,BODY
+4,and,9.97,FALSE,FALSE,3,BODY
+4,"( b ) such other instrument, as may be prescribed by the Central Government in consultation with the",9.97,FALSE,FALSE,100,BODY
+4,"Reserve Bank of India, issued by a company,",9.97,FALSE,FALSE,43,BODY
+4,shall not be treated as debenture;],9.97,FALSE,FALSE,35,BODY
+4,( 31 ) “ deposit ” includes any receipt of money by way of deposit or loan or in any other form by a,9.97,FALSE,FALSE,100,BODY
+4,"company, but does not include such categories of amount as may be prescribed in consultation with the",9.97,FALSE,FALSE,101,BODY
+4,Reserve Bank of India;,9.97,FALSE,FALSE,22,BODY
+4,( 32 ) “ depository ” means a depository as defined in clause ( e ) of sub-section ( 1 ) of section 2 of the,9.97,FALSE,FALSE,108,BODY
+4,"Depositories Act, 1996 (22 of 1996);",9.97,FALSE,FALSE,36,BODY
+4,( 33 ) “ derivative ” means the derivative as defined in clause ( ac ) of section 2 of the Securities,9.97,FALSE,FALSE,101,BODY
+4,"Contracts (Regulation) Act, 1956 (42 of 1956);",9.97,FALSE,FALSE,46,BODY
+4,( 34 ) “ director ” means a director appointed to the Board of a company;,9.97,FALSE,FALSE,73,BODY
+4,( 35 ) “ dividend ” includes any interim dividend;,9.97,FALSE,FALSE,50,BODY
+4,"( 36 ) “ document ” includes summons, notice, requisition, order, declaration, form and register,",9.97,FALSE,FALSE,97,BODY
+4,"whether issued, sent or kept in pursuance of this Act or under any other law for the time being in force",9.97,FALSE,FALSE,104,BODY
+4,"or otherwise, maintained on paper or in electronic form;",9.97,FALSE,FALSE,56,BODY
+4,"( 37 ) “employees’ stock option” means the option given to the directors, officers or employees of a",9.97,FALSE,FALSE,100,BODY
+4,"company or of its holding company or subsidiary company or companies, if any, which gives such",9.97,FALSE,FALSE,94,BODY
+4,"directors, officers or employees, the benefit or right to purchase, or to subscribe for, the shares of the",9.97,FALSE,FALSE,106,BODY
+4,company at a future date at a pre-determined price;,9.97,FALSE,FALSE,51,BODY
+4,"1. Subs. by Act 1 of 2018, s. 2, for clause ( 28 ) (w.e.f. 9-2-2018).",8.12,FALSE,FALSE,69,BODY
+4,"2. The Proviso ins. by s. 2, ibid . (w.e.f. 9-2-2018).",8.12,FALSE,FALSE,54,BODY
+4,19,8.99,FALSE,FALSE,2,BODY
+5,"( 38 ) “ expert ” includes an engineer, a valuer, a chartered accountant, a company secretary, a cost",9.97,FALSE,FALSE,101,BODY
+5,accountant and any other person who has the power or authority to issue a certificate in pursuance of,9.97,FALSE,FALSE,101,BODY
+5,any law for the time being in force;,9.97,FALSE,FALSE,36,BODY
+5,"( 39 ) “ financial institution ” includes a scheduled bank, and any other financial institution defined or",9.97,FALSE,FALSE,106,BODY
+5,"notified under the Reserve Bank of India Act, 1934 (2 of 1934);",9.97,FALSE,FALSE,63,BODY
+5,"( 40 ) “ financial statement ” in relation to a company, includes —",9.97,FALSE,FALSE,67,BODY
+5,( i ) a balance sheet as at the end of the financial year;,9.97,FALSE,FALSE,58,BODY
+5,"( ii ) a profit and loss account, or in the case of a company carrying on any activity not for profit,",9.97,FALSE,FALSE,102,BODY
+5,an income and expenditure account for the financial year;,9.97,FALSE,FALSE,57,BODY
+5,( iii ) cash flow statement for the financial year;,9.97,FALSE,FALSE,51,BODY
+5,"( iv ) a statement of changes in equity, if applicable; and",9.97,FALSE,FALSE,59,BODY
+5,"( v ) any explanatory note annexed to, or forming part of, any document referred to in sub-clause",9.97,FALSE,FALSE,97,BODY
+5,( i ) to sub-clause ( iv ):,9.97,FALSE,FALSE,27,BODY
+5,"Provided that the financial statement, with respect to One Person Company, small company and",9.97,FALSE,FALSE,92,BODY
+5,"dormant company, may not include the cash flow statement;",9.97,FALSE,FALSE,57,BODY
+5,"( 41 ) “ financial year ” , in relation to any company or body corporate, means the period ending on the",9.97,FALSE,FALSE,104,BODY
+5,"31st day of March every year, and where it has been incorporated on or after the 1st day of January of a",9.97,FALSE,FALSE,104,BODY
+5,"year, the period ending on the 31st day of March of the following year, in respect whereof financial",9.97,FALSE,FALSE,100,BODY
+5,statement of the company or body corporate is made up:,9.97,FALSE,FALSE,54,BODY
+5,"1 [Provided that where a company or body corporate, which is a holding company or a subsidiary",9.75,FALSE,FALSE,94,BODY
+5,or associate company of a company incorporated outside India and is required to follow a different,9.97,FALSE,FALSE,98,BODY
+5,"financial year for consolidation of its accounts outside India, the Central Government may, on an",9.97,FALSE,FALSE,97,BODY
+5,"application made by that company or body corporate in such form and manner as may be prescribed,",9.97,FALSE,FALSE,96,BODY
+5,"allow any period as its financial year, whether or not that period is a year:",9.97,FALSE,FALSE,77,BODY
+5,Provided further that any application pending before the Tribunal as on the date of commencement,9.97,FALSE,FALSE,96,BODY
+5,"of the Companies (Amendment) Act, 2019, shall be disposed of by the Tribunal in accordance with the",9.97,FALSE,FALSE,99,BODY
+5,provisions applicable to it before such commencement;],9.97,FALSE,FALSE,54,BODY
+5,2,6.28,FALSE,FALSE,1,BODY
+5,"[Provided also that ] a company or body corporate, existing on the commencement of this Act,",9.97,FALSE,FALSE,92,BODY
+5,"shall, within a period of two years from such commencement, align its financial year as per the",9.97,FALSE,FALSE,95,BODY
+5,provisions of this clause;,9.97,FALSE,FALSE,26,BODY
+5,( 42 ) “ foreign company ” means any company or body corporate incorporated outside India which —,9.97,FALSE,FALSE,97,BODY
+5,"( a ) has a place of business in India whether by itself or through an agent, physically or through",9.97,FALSE,FALSE,99,BODY
+5,electronic mode; and,9.97,FALSE,FALSE,20,BODY
+5,( b ) conducts any business activity in India in any other manner;,9.97,FALSE,FALSE,66,BODY
+5,"( 43 ) “ free reserves ” means such reserves which, as per the latest audited balance sheet of a company,",9.97,FALSE,FALSE,105,BODY
+5,are available for distribution as dividend:,9.97,FALSE,FALSE,43,BODY
+5,Provided that —,9.97,FALSE,FALSE,15,BODY
+5,"( i ) any amount representing unrealised gains, notional gains or revaluation of assets, whether",9.97,FALSE,FALSE,96,BODY
+5,"shown as a reserve or otherwise, or",9.97,FALSE,FALSE,35,BODY
+5,"( ii ) any change in carrying amount of an asset or of a liability recognised in equity, including",9.97,FALSE,FALSE,98,BODY
+5,"surplus in profit and loss account on measurement of the asset or the liability at fair value,",9.97,FALSE,FALSE,94,BODY
+5,shall not be treated as free reserves;,9.97,FALSE,FALSE,38,BODY
+5,"1. The proviso subs. by Act 22 of 2019, s. 2 (w.e.f. 2-11-2018).",8.12,FALSE,FALSE,64,BODY
+5,"2. Subs. by s. 2, ibid., for “Provided further that” (w.e.f. 2-11-2018).",8.12,FALSE,FALSE,72,BODY
+5,20,8.99,FALSE,FALSE,2,BODY
+6,"( 44 ) “ Global Depository Receipt ” means any instrument in the form of a depository receipt, by",9.97,FALSE,FALSE,97,BODY
+6,"whatever name called, created by a foreign depository outside India and authorised by a company",9.97,FALSE,FALSE,95,BODY
+6,making an issue of such depository receipts;,9.97,FALSE,FALSE,44,BODY
+6,( 45 ) “ Government company ” means any company in which not less than fifty-one per cent. of the,9.97,FALSE,FALSE,97,BODY
+6,"paid-up share capital is held by the Central Government, or by any State Government or Governments,",9.97,FALSE,FALSE,99,BODY
+6,"or partly by the Central Government and partly by one or more State Governments, and includes a",9.97,FALSE,FALSE,95,BODY
+6,company which is a subsidiary company of such a Government company;,9.97,FALSE,FALSE,67,BODY
+6,"( 46 ) “ holding company ” , in relation to one or more other companies, means a company of which",9.97,FALSE,FALSE,97,BODY
+6,such companies are subsidiary companies;,9.97,FALSE,FALSE,40,BODY
+6,"1 [ Explanation. — For the purposes of this clause, the expression “ company ” includes any body corporate;]",8.83,FALSE,FALSE,108,BODY
+6,( 47 ) “ independent director ” means an independent director referred to in sub-section ( 6 ) of section,9.97,FALSE,FALSE,105,BODY
+6,149;,9.97,FALSE,FALSE,4,BODY
+6,( 48 ) “ Indian Depository Receipt ” means any instrument in the form of a depository receipt created,9.97,FALSE,FALSE,101,BODY
+6,by a domestic depository in India and authorised by a company incorporated outside India making an,9.97,FALSE,FALSE,98,BODY
+6,issue of such depository receipts;,9.97,FALSE,FALSE,34,BODY
+6,2 * * * * *,9.35,FALSE,FALSE,11,BODY
+6,( 50 ) “ issued capital ” means such capital as the company issues from time to time for subscription;,9.97,FALSE,FALSE,102,BODY
+6,"( 51 ) “ key managerial personnel ” , in relation to a company, means —",9.97,FALSE,FALSE,71,BODY
+6,( i ) the Chief Executive Officer or the managing director or the manager;,9.97,FALSE,FALSE,74,BODY
+6,( ii ) the company secretary;,9.97,FALSE,FALSE,29,BODY
+6,( iii ) the whole-time director;,9.97,FALSE,FALSE,32,BODY
+6,( iv ) the Chief Financial Officer; 3 ***,9.56,FALSE,FALSE,41,BODY
+6,4 [( v ),9.05,FALSE,FALSE,8,BODY
+6,"such other officer, not more than one level below the directors who is in whole-time employment,",8.99,FALSE,FALSE,96,BODY
+6,designated as key managerial personnel by the Board; and,8.99,FALSE,FALSE,56,BODY
+6,( vi ) such other officer as may be prescribed ;],9.08,FALSE,FALSE,49,BODY
+6,( 52 ) “ listed company ” means a company which has any of its securities listed on any recognised,9.97,FALSE,FALSE,98,BODY
+6,stock exchange:,9.97,FALSE,FALSE,15,BODY
+6,"5 [Provided that such class of companies, which have listed or intend to list such class of securities,",9.76,FALSE,FALSE,103,BODY
+6,"as may be prescribed in consultation with the Securities and Exchange Board, shall not be considered as",9.97,FALSE,FALSE,103,BODY
+6,listed companies.],9.97,FALSE,FALSE,18,BODY
+6,"( 53 ) “ manager ” means an individual who, subject to the superintendence, control and direction of",9.97,FALSE,FALSE,100,BODY
+6,"the Board of Directors, has the management of the whole, or substantially the whole, of the affairs of a",9.97,FALSE,FALSE,104,BODY
+6,"company, and includes a director or any other person occupying the position of a manager, by whatever",9.97,FALSE,FALSE,101,BODY
+6,"name called, whether under a contract of service or not;",9.97,FALSE,FALSE,56,BODY
+6,"( 54 ) “ managing director ” means a director who, by virtue of the articles of a company or an",9.97,FALSE,FALSE,95,BODY
+6,"agreement with the company or a resolution passed in its general meeting, or by its Board of Directors,",9.97,FALSE,FALSE,103,BODY
+6,is entrusted with substantial powers of management of the affairs of the company and includes a director,9.97,FALSE,FALSE,104,BODY
+6,"occupying the position of managing director, by whatever name called.",9.97,FALSE,FALSE,69,BODY
+6,"1. The Explanatio n ins. by Act 1 of 2018, s. 2 (w.e.f. 9-2-2018).",8.12,FALSE,FALSE,66,BODY
+6,"2. Clause ( 49 ) omitted by s. 2, ibid. (w.e.f. 9-2-2018).",8.12,FALSE,FALSE,58,BODY
+6,"3. The word “and” omitted by s. 2, ibid. (w.e.f. 9-2-2018).",8.12,FALSE,FALSE,59,BODY
+6,"4. Subs. by s. 2, ibid., for sub-clause ( v ) (w.e.f. 9-2-2018).",8.12,FALSE,FALSE,64,BODY
+6,"5. The Proviso ins. by Act 29 of 2020, s. 2 (w.e.f. 22-1-2021).",8.12,FALSE,FALSE,63,BODY
+6,21,8.99,FALSE,FALSE,2,BODY
+7,"Explanation . — For the purposes of this clause, the power to do administrative acts of a routine nature",9.97,FALSE,FALSE,104,BODY
+7,when so authorised by the Board such as the power to affix the common seal of the company to any,9.97,FALSE,FALSE,96,BODY
+7,document or to draw and endorse any cheque on the account of the company in any bank or to draw and,9.97,FALSE,FALSE,99,BODY
+7,endorse any negotiable instrument or to sign any certificate of share or to direct registration of transfer,9.97,FALSE,FALSE,107,BODY
+7,"of any share, shall not be deemed to be included within the substantial powers of management;",9.97,FALSE,FALSE,93,BODY
+7,"( 55 ) “ member ” , in relation to a company, means —",9.97,FALSE,FALSE,53,BODY
+7,( i ) the subscriber to the memorandum of the company who shall be deemed to have agreed to,9.97,FALSE,FALSE,91,BODY
+7,"become member of the company, and on its registration, shall be entered as member in its register of",9.97,FALSE,FALSE,100,BODY
+7,members;,9.97,FALSE,FALSE,8,BODY
+7,( ii ) every other person who agrees in writing to become a member of the company and whose,9.97,FALSE,FALSE,91,BODY
+7,name is entered in the register of members of the company;,9.97,FALSE,FALSE,58,BODY
+7,( iii ) every person holding shares of the company and whose name is entered as a beneficial owner,9.97,FALSE,FALSE,98,BODY
+7,in the records of a depository;,9.97,FALSE,FALSE,31,BODY
+7,( 56 ) “ memorandum ” means the memorandum of association of a company as originally framed or,9.97,FALSE,FALSE,94,BODY
+7,as altered from time to time in pursuance of any previous company law or of this Act;,9.97,FALSE,FALSE,85,BODY
+7,( 57 ) “ net worth ” means the aggregate value of the paid-up share capital and all reserves created out,9.97,FALSE,FALSE,104,BODY
+7,"of the profits 1 [ , securities premium account and debit or credit balance of profit and loss account,] after",9.73,FALSE,FALSE,110,BODY
+7,"deducting the aggregate value of the accumulated losses, deferred expenditure and miscellaneous",9.97,FALSE,FALSE,95,BODY
+7,"expenditure not written off, as per the audited balance sheet, but does not include reserves created out",9.97,FALSE,FALSE,104,BODY
+7,"of revaluation of assets, write-back of depreciation and amalgamation;",9.97,FALSE,FALSE,70,BODY
+7,( 58 ) “ notification ” means a notification published in the Official Gazette and the expression “ notify ”,9.97,FALSE,FALSE,108,BODY
+7,shall be construed accordingly;,9.97,FALSE,FALSE,31,BODY
+7,"( 59 ) “ officer ” includes any director, manager or key managerial personnel or any person in",9.97,FALSE,FALSE,94,BODY
+7,accordance with whose directions or instructions the Board of Directors or any one or more of the,9.97,FALSE,FALSE,97,BODY
+7,directors is or are accustomed to act;,9.97,FALSE,FALSE,38,BODY
+7,"( 60 ) “ officer who is in default ” , for the purpose of any provision in this Act which enacts that an",9.97,FALSE,FALSE,104,BODY
+7,officer of the company who is in default shall be liable to any penalty or punishment by way of,9.97,FALSE,FALSE,95,BODY
+7,"imprisonment, fine or otherwise, means any of the following officers of a company, namely: —",9.97,FALSE,FALSE,92,BODY
+7,( i ) whole-time director;,9.97,FALSE,FALSE,26,BODY
+7,( ii ) key managerial personnel;,9.97,FALSE,FALSE,32,BODY
+7,"( iii ) where there is no key managerial personnel, such director or directors as specified by the",9.97,FALSE,FALSE,98,BODY
+7,Board in this behalf and who has or have given his or their consent in writing to the Board to such,9.97,FALSE,FALSE,99,BODY
+7,"specification, or all the directors, if no director is so specified;",9.97,FALSE,FALSE,68,BODY
+7,"( iv ) any person who, under the immediate authority of the Board or any key managerial personnel,",9.97,FALSE,FALSE,98,BODY
+7,"is charged with any responsibility including maintenance, filing or distribution of accounts or",9.97,FALSE,FALSE,95,BODY
+7,"records, authorises, actively participates in, knowingly permits, or knowingly fails to take active steps",9.97,FALSE,FALSE,105,BODY
+7,"to prevent, any default;",9.97,FALSE,FALSE,24,BODY
+7,"( v ) any person in accordance with whose advice, directions or instructions the Board of Directors",9.97,FALSE,FALSE,99,BODY
+7,"of the company is accustomed to act, other than a person who gives advice to the Board in a",9.97,FALSE,FALSE,91,BODY
+7,professional capacity;,9.97,FALSE,FALSE,22,BODY
+7,"( vi ) every director, in respect of a contravention of any of the provisions of this Act, who is aware",9.97,FALSE,FALSE,103,BODY
+7,of such contravention by virtue of the receipt by him of any proceedings of the Board or participation,9.97,FALSE,FALSE,102,BODY
+7,"1. Subs. by Act 1 of 2018, s. 2, for “and securities premium account” (w.e.f. 9 -2-2018).",8.12,FALSE,FALSE,89,BODY
+7,22,8.99,FALSE,FALSE,2,BODY
+8,"in such proceedings without objecting to the same, or where such contravention had taken place with",9.97,FALSE,FALSE,99,BODY
+8,his consent or connivance;,9.97,FALSE,FALSE,26,BODY
+8,"( vii ) in respect of the issue or transfer of any shares of a company, the share transfer agents,",9.97,FALSE,FALSE,98,BODY
+8,registrars and merchant bankers to the issue or transfer;,9.97,FALSE,FALSE,57,BODY
+8,( 61 ) “ Official Liquidator ” means an Official Liquidator appointed under sub-section ( 1 ) of,9.97,FALSE,FALSE,96,BODY
+8,section 59;,9.97,FALSE,FALSE,11,BODY
+8,( 62 ) “ One Person Company ” means a company which has only one person as a member;,9.97,FALSE,FALSE,84,BODY
+8,"( 63 ) “ ordinary or special resolution ” means an ordinary resolution, or as the case may be, special",9.97,FALSE,FALSE,102,BODY
+8,resolution referred to in section 114;,9.97,FALSE,FALSE,38,BODY
+8,( 64 ) “ paid-up share capital ” or “ share capital paid-up ” means such aggregate amount of money,9.97,FALSE,FALSE,98,BODY
+8,credited as paid-up as is equivalent to the amount received as paid-up in respect of shares issued and,9.97,FALSE,FALSE,102,BODY
+8,"also includes any amount credited as paid-up in respect of shares of the company, but does not include",9.97,FALSE,FALSE,102,BODY
+8,"any other amount received in respect of such shares, by whatever name called;",9.97,FALSE,FALSE,77,BODY
+8,( 65 ) “ postal ballot ” means voting by post or through any electronic mode;,9.97,FALSE,FALSE,77,BODY
+8,( 66 ) “ prescribed ” means prescribed by rules made under this Act;,9.97,FALSE,FALSE,68,BODY
+8,( 67 ) “ previous company law ” means any of the laws specified below: —,9.97,FALSE,FALSE,72,BODY
+8,"( i ) Acts relating to companies in force before the Indian Companies Act, 1866 (10 of 1866);",9.97,FALSE,FALSE,93,BODY
+8,"( ii ) the Indian Companies Act, 1866 (10 of 1866);",9.97,FALSE,FALSE,51,BODY
+8,"( iii ) the Indian Companies Act, 1882 (6 of 1882);",9.97,FALSE,FALSE,51,BODY
+8,"( iv ) the Indian Companies Act, 1913 (7 of 1913);",9.97,FALSE,FALSE,50,BODY
+8,"( v ) the Registration of Transferred Companies Ordinance, 1942 (Ord. 54 of 1942);",9.97,FALSE,FALSE,82,BODY
+8,"( vi ) the Companies Act, 1956 (1 of 1956); and",9.97,FALSE,FALSE,47,BODY
+8,( vii ) any law corresponding to any of the aforesaid Acts or the Ordinances and in force —,9.97,FALSE,FALSE,91,BODY
+8,( A ) in the merged territories or in a Part B State (other than the State of Jammu and,9.97,FALSE,FALSE,87,BODY
+8,"Kashmir*), or any part thereof, before the extension thereto of the Indian Companies Act, 1913",9.97,FALSE,FALSE,94,BODY
+8,(7 of 1913); or,9.97,FALSE,FALSE,15,BODY
+8,"( B ) in the State of Jammu and Kashmir*, or any part thereof, before the commencement of",9.97,FALSE,FALSE,89,BODY
+8,"the Jammu and Kashmir (Extension of Laws) Act, 1956 (62 of 1956), in so far as banking,",9.97,FALSE,FALSE,87,BODY
+8,"insurance and financial corporations are concerned, and before the commencement of the",9.97,FALSE,FALSE,86,BODY
+8,"Central Laws (Extension to Jammu and Kashmir) Act, 1968 (25 of 1968), in so far as other",9.97,FALSE,FALSE,88,BODY
+8,corporations are concerned;,9.97,FALSE,FALSE,27,BODY
+8,"( viii ) the Portuguese Commercial Code, in so far as it relates to sociedades anonimas ; and",9.97,FALSE,FALSE,93,BODY
+8,"( ix ) the Registration of Companies (Sikkim) Act, 1961 (Sikkim Act 8 of 1961);",9.97,FALSE,FALSE,79,BODY
+8,( 68 ) “ private company ” means a company having a minimum paid-up share capital 1 *** as may be,9.79,FALSE,FALSE,97,BODY
+8,"prescribed, and which by its articles, —",9.97,FALSE,FALSE,40,BODY
+8,( i ) restricts the right to transfer its shares;,9.97,FALSE,FALSE,49,BODY
+8,"( ii ) except in case of One Person Company, limits the number of its members to two hundred:",9.97,FALSE,FALSE,93,BODY
+8,"Provided that where two or more persons hold one or more shares in a company jointly, they shall,",9.97,FALSE,FALSE,97,BODY
+8,"for the purposes of this clause, be treated as a single member:",9.97,FALSE,FALSE,63,BODY
+8,"1. The words “of one lakh rupees or such higher paid - up share capital” omitted by Ac t 21 of 2015, s. 2 (w.e.f. 29-5-2015).",8.12,FALSE,FALSE,125,BODY
+8,"*. Vide Notification No. S.O. 3912 (E), dated 30th October, 2019, this Act is made applicable to the Union territory of Jammu",8.21,FALSE,FALSE,125,BODY
+8,and Kashmir and the Union territory of Ladakh.,8.12,FALSE,FALSE,46,BODY
+8,23,8.99,FALSE,FALSE,2,BODY
+9,Provided further that —,9.97,FALSE,FALSE,23,BODY
+9,( A ) persons who are in the employment of the company; and,9.97,FALSE,FALSE,59,BODY
+9,"( B ) persons who, having been formerly in the employment of the company, were members of the",9.97,FALSE,FALSE,93,BODY
+9,"company while in that employment and have continued to be members after the employment ceased,",9.97,FALSE,FALSE,94,BODY
+9,shall not be included in the number of members; and,9.97,FALSE,FALSE,51,BODY
+9,( iii ) prohibits any invitation to the public to subscribe for any securities of the company;,9.97,FALSE,FALSE,94,BODY
+9,( 69 ) “ promoter ” means a person —,9.97,FALSE,FALSE,36,BODY
+9,( a ) who has been named as such in a prospectus or is identified by the company in the annual,9.97,FALSE,FALSE,94,BODY
+9,return referred to in section 92; or,9.97,FALSE,FALSE,36,BODY
+9,"( b ) who has control over the affairs of the company, directly or in directly whether as a share",9.97,FALSE,FALSE,97,BODY
+9,"holder, director or otherwise; or",9.97,FALSE,FALSE,33,BODY
+9,"( c ) in accordance with whose advice, directions or instructions the Board of Directors of the",9.97,FALSE,FALSE,95,BODY
+9,company is accustomed to act:,9.97,FALSE,FALSE,29,BODY
+9,Provided that nothing in sub-clause ( c ) shall apply to a person who is acting merely in a professional,9.97,FALSE,FALSE,104,BODY
+9,capacity;,9.97,FALSE,FALSE,9,BODY
+9,( 70 ) “ prospectus ” means any document described or issued as a prospectus and includes a red herring,9.97,FALSE,FALSE,103,BODY
+9,"prospectus referred to in section 32 or shelf prospectus referred to in section 31 or any notice, circular,",9.97,FALSE,FALSE,107,BODY
+9,advertisement or other document inviting offers from the public for the subscription or purchase of any,9.97,FALSE,FALSE,103,BODY
+9,securities of a body corporate;,9.97,FALSE,FALSE,31,BODY
+9,( 71 ) “ public company ” means a company which —,9.97,FALSE,FALSE,49,BODY
+9,1,6.28,FALSE,FALSE,1,BODY
+9,( a ) is not a private company; [and],9.97,FALSE,FALSE,37,BODY
+9,( b ) has a minimum paid-up share capital 2 *** as may be prescribed:,9.72,FALSE,FALSE,69,BODY
+9,"Provided that a company which is a subsidiary of a company, not being a private company, shall be",9.97,FALSE,FALSE,97,BODY
+9,deemed to be public company for the purposes of this Act even where such subsidiary company,9.97,FALSE,FALSE,91,BODY
+9,continues to be a private company in its articles ;,9.97,FALSE,FALSE,51,BODY
+9,( 72 ) “ public financial institution ” means —,9.97,FALSE,FALSE,47,BODY
+9,"( i ) the Life Insurance Corporation of India, established under section 3 of the Life Insurance",9.97,FALSE,FALSE,96,BODY
+9,"Corporation Act, 1956 (31 of 1956);",9.97,FALSE,FALSE,35,BODY
+9,"( ii ) the Infrastructure Development Finance Company Limited, referred to in clause ( vi ) of",9.97,FALSE,FALSE,94,BODY
+9,"sub-section ( 1 ) of section 4A of the Companies Act, 1956 (1 of 1956) so repealed under section 465",9.97,FALSE,FALSE,100,BODY
+9,of this Act;,9.97,FALSE,FALSE,12,BODY
+9,( iii ) specified company referred to in the Unit Trust of India (Transfer of Undertaking and Repeal),9.97,FALSE,FALSE,101,BODY
+9,"Act, 2002 (58 of 2002);",9.97,FALSE,FALSE,23,BODY
+9,( iv ) institutions notified by the Central Government under sub-section ( 2 ) of section 4A of the,9.97,FALSE,FALSE,99,BODY
+9,"Companies Act, 1956 (1 of 1956) so repealed under section 465 of this Act;",9.97,FALSE,FALSE,74,BODY
+9,( v ) such other institution as may be notified by the Central Government in consultation with the,9.97,FALSE,FALSE,98,BODY
+9,Reserve Bank of India:,9.97,FALSE,FALSE,22,BODY
+9,Provided that no institution shall be so notified unless —,9.97,FALSE,FALSE,58,BODY
+9,( A ) it has been established or constituted by or under any Central or State Act 1 [other than this,9.79,FALSE,FALSE,100,BODY
+9,Act or the previous company law]; or,9.97,FALSE,FALSE,36,BODY
+9,"1. Ins. by Act 1 of 2018, s. 2 (w.e.f. 9-2-2018).",8.12,FALSE,FALSE,49,BODY
+9,"2. The words “of five lakh rupees or such higher paid-up capital,” omitted by Act 21 of 2015, s. 2 (w.e.f. 29 -5-2015).",8.12,FALSE,FALSE,119,BODY
+9,24,8.99,FALSE,FALSE,2,BODY
+10,( B ) not less than fifty-one per cent. of the paid-up share capital is held or controlled by the Central,9.97,FALSE,FALSE,105,BODY
+10,Government or by any State Government or Governments or partly by the Central Government and,9.97,FALSE,FALSE,92,BODY
+10,partly by one or more State Governments;,9.97,FALSE,FALSE,40,BODY
+10,( 73 ) “ recognised stock exchange ” means a recognised stock exchange as defined in clause ( f ) of,9.97,FALSE,FALSE,100,BODY
+10,"section 2 of the Securities Contracts (Regulation) Act, 1956 (42 of 1956);",9.97,FALSE,FALSE,74,BODY
+10,( 74 ) “ register of companies ” means the register of companies maintained by the Registrar on paper,9.97,FALSE,FALSE,101,BODY
+10,or in any electronic mode under this Act;,9.97,FALSE,FALSE,41,BODY
+10,"( 75 ) “ Registrar ” means a Registrar, an Additional Registrar, a Joint Registrar, a Deputy Registrar or",9.97,FALSE,FALSE,105,BODY
+10,"an Assistant Registrar, having the duty of registering companies and discharging various functions under",9.97,FALSE,FALSE,104,BODY
+10,this Act;,9.97,FALSE,FALSE,9,BODY
+10,"( 76 ) “ related party ” , with reference to a company, means —",9.97,FALSE,FALSE,63,BODY
+10,( i ) a director or his relative;,9.97,FALSE,FALSE,33,BODY
+10,( ii ) a key managerial personnel or his relative;,9.97,FALSE,FALSE,50,BODY
+10,"( iii ) a firm, in which a director, manager or his relative is a partner;",9.97,FALSE,FALSE,74,BODY
+10,( iv ) a private company in which a director or manager 1 [or his relative] is a member or director;,9.79,FALSE,FALSE,100,BODY
+10,( v ) a public company in which a director or manager is a director 2 [and holds] along with his,9.79,FALSE,FALSE,96,BODY
+10,"relatives, more than two per cent. of its paid-up share capital;",9.97,FALSE,FALSE,64,BODY
+10,"( vi ) any body corporate whose Board of Directors, managing director or manager is accustomed",9.97,FALSE,FALSE,94,BODY
+10,"to act in accordance with the advice, directions or instructions of a director or manager;",9.97,FALSE,FALSE,90,BODY
+10,"( vii ) any person on whose advice, directions or instructions a director or manager is accustomed",9.97,FALSE,FALSE,98,BODY
+10,to act:,9.97,FALSE,FALSE,7,BODY
+10,"Provided that nothing in sub-clauses ( vi ) and ( vii ) shall apply to the advice, directions or",9.97,FALSE,FALSE,96,BODY
+10,instructions given in a professional capacity;,9.97,FALSE,FALSE,46,BODY
+10,[( viii ) any body corporate which is —,9.97,FALSE,FALSE,39,BODY
+10,3,5.85,FALSE,FALSE,1,BODY
+10,"( A ) a holding, subsidiary or an associate company of such company;",9.97,FALSE,FALSE,68,BODY
+10,( B ) a subsidiary of a holding company to which it is also a subsidiary; or,9.97,FALSE,FALSE,76,BODY
+10,( C ) an investing company or the venturer of the company.,9.97,FALSE,FALSE,58,BODY
+10,"Explanation. — For the purpose of this clause, “ the investing company or the venturer of a",9.97,FALSE,FALSE,91,BODY
+10,company ” means a body corporate whose investment in the company would result in the company,9.97,FALSE,FALSE,92,BODY
+10,becoming an associate company of the body corporate];,9.97,FALSE,FALSE,53,BODY
+10,( ix ) such other person as may be prescribed;,9.97,FALSE,FALSE,46,BODY
+10,"( 77 ) “ relative ” , with reference to any person, means any one who is related to another, if —",9.97,FALSE,FALSE,97,BODY
+10,( i ) they are members of a Hindu Undivided Family;,9.97,FALSE,FALSE,51,BODY
+10,( ii ) they are husband and wife; or,9.97,FALSE,FALSE,36,BODY
+10,( iii ) one person is related to the other in such manner as may be prescribed;,9.97,FALSE,FALSE,79,BODY
+10,( 78 ) “ remuneration ” means any money or its equivalent given or passed to any person for services,9.97,FALSE,FALSE,100,BODY
+10,"rendered by him and includes perquisites as defined under the Income-tax Act, 1961 (43 of 1961);",9.97,FALSE,FALSE,96,BODY
+10,( 79 ) “ Schedule ” means a Schedule annexed to this Act;,9.97,FALSE,FALSE,57,BODY
+10,"1. Ins. by S.O. 1894 (E), dated 24th July, 2014.",8.12,FALSE,FALSE,48,BODY
+10,"2. Subs. by S.O. 1820 (E), dated 9th July, 2014 for “or holds” .",8.12,FALSE,FALSE,64,BODY
+10,"3. Subs. by Act 1 of 2018, s. 2, for sub-clause ( viii ) (w.e.f. 9-2-2018).",8.12,FALSE,FALSE,75,BODY
+10,25,8.99,FALSE,FALSE,2,BODY
+11,( 80 ) “ scheduled bank ” means the scheduled bank as defined in clause ( e ) of section 2 of the Reserve,9.97,FALSE,FALSE,105,BODY
+11,"Bank of India Act, 1934 (2 of 1934);",9.97,FALSE,FALSE,36,BODY
+11,( 81 ) “ securities ” means the securities as defined in clause ( h ) of section 2 of the Securities Contracts,9.97,FALSE,FALSE,110,BODY
+11,"(Regulation) Act, 1956 (42 of 1956);",9.97,FALSE,FALSE,36,BODY
+11,( 82 ) “ Securities and Exchange Board ” means the Securities and Exchange Board of India established,9.97,FALSE,FALSE,101,BODY
+11,"under section 3 of the Securities and Exchange Board of India Act, 1992 (15 of 1992);",9.97,FALSE,FALSE,85,BODY
+11,( 83 ) “ Serious Fraud Investigation Office ” means the office referred to in section 211;,9.97,FALSE,FALSE,90,BODY
+11,( 84 ) “ share ” means a share in the share capital of a company and includes stock;,9.97,FALSE,FALSE,84,BODY
+11,"( 85 ) “ small company ” means a company, other than a public company, —",9.97,FALSE,FALSE,72,BODY
+11,( i ) paid-up share capital of which does not exceed fifty lakh rupees or such higher amount as may,9.97,FALSE,FALSE,99,BODY
+11,be prescribed which shall not be more than 1 [ten crore rupees]; 2 [and],9.44,FALSE,FALSE,72,BODY
+11,( ii ) turnover of which 3 [as per profit and loss account for the immediately preceding financial,9.76,FALSE,FALSE,98,BODY
+11,year] does not exceed two crore rupees or such higher amount as may be prescribed which shall not,9.97,FALSE,FALSE,97,BODY
+11,be more than 4 [one hundred crore rupees]:,9.51,FALSE,FALSE,42,BODY
+11,Provided that nothing in this clause shall apply to —,9.97,FALSE,FALSE,53,BODY
+11,( A ) a holding company or a subsidiary company;,9.97,FALSE,FALSE,48,BODY
+11,( B ) a company registered under section 8; or,9.97,FALSE,FALSE,46,BODY
+11,( C ) a company or body corporate governed by any special Act;,9.97,FALSE,FALSE,62,BODY
+11,( 86 ) “ subscribed capital ” means such part of the capital which is for the time being subscribed by the,9.97,FALSE,FALSE,106,BODY
+11,members of a company;,9.97,FALSE,FALSE,21,BODY
+11,"( 87 ) “ subsidiary company ” or “ subsidiary ” , in relation to any other company (that is to say the",9.97,FALSE,FALSE,102,BODY
+11,"holding company), means a company in which the holding company —",9.97,FALSE,FALSE,64,BODY
+11,( i ) controls the composition of the Board of Directors; or,9.97,FALSE,FALSE,60,BODY
+11,( ii ) exercises or controls more than one-half of the 5 [total voting power] either at its own or,9.78,FALSE,FALSE,98,BODY
+11,together with one or more of its subsidiary companies:,9.97,FALSE,FALSE,54,BODY
+11,Provided that such class or classes of holding companies as may be prescribed shall not have layers,9.97,FALSE,FALSE,99,BODY
+11,of subsidiaries beyond such numbers as may be prescribed.,9.97,FALSE,FALSE,57,BODY
+11,"Explanation. — For the purposes of this clause, —",9.97,FALSE,FALSE,49,BODY
+11,( a ) a company shall be deemed to be a subsidiary company of the holding company even if the,9.97,FALSE,FALSE,93,BODY
+11,control referred to in sub-clause ( i ) or sub-clause ( ii ) is of another subsidiary company of the holding,9.97,FALSE,FALSE,108,BODY
+11,company;,9.97,FALSE,FALSE,8,BODY
+11,( b ) the composition of a company’s Board of Directors shall be deemed to be controlled by,9.97,FALSE,FALSE,91,BODY
+11,another company if that other company by exercise of some power exercisable by it at its discretion,9.97,FALSE,FALSE,99,BODY
+11,can appoint or remove all or a majority of the directors;,9.97,FALSE,FALSE,57,BODY
+11,( c ) the expression “ company ” includes any body corporate;,9.97,FALSE,FALSE,61,BODY
+11,( d ) “ layer ” in relation to a holding company means its subsidiary or subsidiaries;,9.97,FALSE,FALSE,86,BODY
+11,"1. Subs. by Act 1 of 2018, s. 2, for “five crore rupees” (w.e.f. 9-2-2018).",8.12,FALSE,FALSE,75,BODY
+11,"2. Subs. by notification No. S.O. 504(E), dated 13th February, 2015, for word “or” (w.e.f. 13-2-2015).",8.12,FALSE,FALSE,102,BODY
+11,"3. Subs. by Act 1 of 2018, s. 2, for “as per its last profit and loss account” (w.e.f. 9 -2-2018).",8.12,FALSE,FALSE,98,BODY
+11,"4. Subs. by s. 2, ibid ., for “twenty crore rupees”(w.e.f. 9 -2-2018).",8.12,FALSE,FALSE,70,BODY
+11,"5. Subs. by s. 2, ibid ., for “ total share capital ” (w.e.f. 7 -5-2018).",8.12,FALSE,FALSE,73,BODY
+11,26,8.99,FALSE,FALSE,2,BODY
+12,( 88 ) “ sweat equity shares ” means such equity shares as are issued by a company to its directors or,9.97,FALSE,FALSE,102,BODY
+12,"employees at a discount or for consideration, other than cash, for providing their know-how or making",9.97,FALSE,FALSE,101,BODY
+12,"available rights in the nature of intellectual property rights or value additions, by whatever name called;",9.97,FALSE,FALSE,107,BODY
+12,"( 89 ) “ total voting power ” , in relation to any matter, means the total number of votes which may be",9.97,FALSE,FALSE,103,BODY
+12,cast in regard to that matter on a poll at a meeting of a company if all the members thereof or their,9.97,FALSE,FALSE,101,BODY
+12,proxies having a right to vote on that matter are present at the meeting and cast their votes;,9.97,FALSE,FALSE,94,BODY
+12,( 90 ) “ Tribunal ” means the National Company Law Tribunal constituted under section 408;,9.97,FALSE,FALSE,90,BODY
+12,"1 [( 91 ) “ turnover ” means gross amount of revenue recognised in the profit and loss account from the sale,",8.96,FALSE,FALSE,109,BODY
+12,"supply, or distribution of goods or on account of services rendered, or both, by a company during a financial year;]",8.99,FALSE,FALSE,116,BODY
+12,( 92 ) “ unlimited company ” means a company not having any limit on the liability of its members;,9.97,FALSE,FALSE,98,BODY
+12,( 93 ) “ voting right ” means the right of a member of a company to vote in any meeting of the company,9.97,FALSE,FALSE,102,BODY
+12,or by means of postal ballot;,9.97,FALSE,FALSE,29,BODY
+12,( 94 ) “ whole-time director ” includes a director in the whole-time employment of the company;,9.97,FALSE,FALSE,95,BODY
+12,2 “ winding up ” means winding up under this Act or liquidation under the Insolvency and,9.72,FALSE,FALSE,88,BODY
+12,[( 94A ),8.99,FALSE,TRUE,8,BODY
+12,"Bankruptcy Code, 2016 (31 of 2016), as applicable;]",9.97,FALSE,FALSE,51,BODY
+12,( 95 ) words and expressions used and not defined in this Act but defined in the Securities Contracts,9.97,FALSE,FALSE,101,BODY
+12,"(Regulation) Act, 1956 (42 of 1956) or the Securities and Exchange Board of India Act, 1992 (15",9.97,FALSE,FALSE,95,BODY
+12,"of 1992) or the Depositories Act, 1996 (22 of 1996) shall have the meanings respectively assigned to",9.97,FALSE,FALSE,100,BODY
+12,them in those Acts.,9.97,FALSE,FALSE,19,BODY
+12,CHAPTER II,9.97,FALSE,TRUE,10,CHAPTER
+12,I NCORPORATION OF COMPANY AND MATTERS INCIDENTAL THERETO,8.35,FALSE,TRUE,56,CHAPTER
+12,3. Formation of company. — ( 1 ) A company may be formed for any lawful purpose by —,9.97,TRUE,FALSE,84,TOPIC
+12,"( a ) seven or more persons, where the company to be formed is to be a public company;",9.97,FALSE,FALSE,86,BODY
+12,"( b ) two or more persons, where the company to be formed is to be a private company; or",9.97,FALSE,FALSE,88,BODY
+12,"( c ) one person, where the company to be formed is to be One Person Company that is to say, a",9.97,FALSE,FALSE,94,BODY
+12,"private company,",9.97,FALSE,FALSE,16,BODY
+12,by subscribing their names or his name to a memorandum and complying with the requirements of this Act,9.97,FALSE,FALSE,102,BODY
+12,in respect of registration:,9.97,FALSE,FALSE,27,BODY
+12,"Provided that the memorandum of One Person Company shall indicate the name of the other person,",9.97,FALSE,FALSE,95,BODY
+12,"with his prior written consent in the prescribed form, who shall, in the event of the subscriber’s death or his",9.97,FALSE,FALSE,111,BODY
+12,incapacity to contract become the member of the company and the written consent of such person shall also,9.97,FALSE,FALSE,105,BODY
+12,be filed with the Registrar at the time of incorporation of the One Person Company along with its,9.97,FALSE,FALSE,97,BODY
+12,memorandum and articles:,9.97,FALSE,FALSE,24,BODY
+12,Provided further that such other person may withdraw his consent in such manner as may be prescribed:,9.97,FALSE,FALSE,101,BODY
+12,Provided also that the member of One Person Company may at any time change the name of such other,9.97,FALSE,FALSE,97,BODY
+12,person by giving notice in such manner as may be prescribed:,9.97,FALSE,FALSE,60,BODY
+12,Provided also that it shall be the duty of the member of One Person Company to intimate the company,9.97,FALSE,FALSE,99,BODY
+12,"the change, if any, in the name of the other person nominated by him by indicating in the memorandum or",9.97,FALSE,FALSE,103,BODY
+12,"otherwise within such time and in such manner as maybe prescribed, and the company shall intimate the",9.97,FALSE,FALSE,101,BODY
+12,Registrar any such change within such time and in such manner as may be prescribed:,9.97,FALSE,FALSE,83,BODY
+12,Provided also that any such change in the name of the person shall not be deemed to be an alteration of,9.97,FALSE,FALSE,103,BODY
+12,the memorandum.,9.97,FALSE,FALSE,15,BODY
+12,"1. Subs. by Act 1 of 2018, s. 2, for clause ( 91 ) (w.e.f. 9-2-2018).",8.12,FALSE,FALSE,69,BODY
+12,"2. Ins. by Act 31 of 2016, s. 255 and the Eleventh Schedule (w.e.f. 15-11-2016).",8.12,FALSE,FALSE,80,BODY
+12,27,8.99,FALSE,FALSE,2,BODY
+13,( 2 ) A company formed under sub-section ( 1 ) may be either —,9.97,FALSE,FALSE,62,BODY
+13,( a ) a company limited by shares; or,9.97,FALSE,FALSE,37,BODY
+13,( b ) a company limited by guarantee; or,9.97,FALSE,FALSE,40,BODY
+13,( c ) an unlimited company.,9.97,FALSE,FALSE,27,BODY
+13,1 [3A. Members severally liable in certain cases.- If at any time the number of members of a company,9.77,TRUE,FALSE,100,TOPIC
+13,"is reduced, in the case of a public company, below seven, in the case of a private company, below two, and",9.97,FALSE,FALSE,106,BODY
+13,"the company carries on business for more than six months while the number of members is so reduced,",9.97,FALSE,FALSE,99,BODY
+13,every person who is a member of the company during the time that it so carries on business after those six,9.97,FALSE,FALSE,106,BODY
+13,months and is cognisant of the fact that it is carrying on business with less than seven members or two,9.97,FALSE,FALSE,103,BODY
+13,"members, as the case may be, shall be severally liable for the payment of the whole debts of the company",9.97,FALSE,FALSE,104,BODY
+13,"contracted during that time, and may be severally sued therefor.]",9.97,FALSE,FALSE,65,BODY
+13,4. Memorandum. — ( 1 ) The memorandum of a company shall state —,9.97,TRUE,FALSE,64,TOPIC
+13,"( a ) the name of the company with the last word “ Limited ” in the case of a public limited company,",9.97,FALSE,FALSE,101,BODY
+13,or the last words “ Private Limited ” in the case of a private limited company:,9.97,FALSE,FALSE,79,BODY
+13,Provided that nothing in this clause shall apply to a company registered under section 8;,9.97,FALSE,FALSE,89,BODY
+13,( b ) the State in which the registered office of the company is to be situated;,9.97,FALSE,FALSE,80,BODY
+13,( c ) the objects for which the company is proposed to be incorporated and any matter considered,9.97,FALSE,FALSE,96,BODY
+13,necessary in furtherance thereof;,9.97,FALSE,FALSE,33,BODY
+13,"( d ) the liability of members of the company, whether limited or unlimited, and also state, —",9.97,FALSE,FALSE,94,BODY
+13,"( i ) in the case of a company limited by shares, that liability of its members is limited to the",9.97,FALSE,FALSE,97,BODY
+13,"amount unpaid, if any, on the shares held by them; and",9.97,FALSE,FALSE,54,BODY
+13,"( ii ) in the case of a company limited by guarantee, the amount up to which each member",9.97,FALSE,FALSE,88,BODY
+13,undertakes to contribute —,9.97,FALSE,FALSE,26,BODY
+13,( A ) to the assets of the company in the event of its being wound up while he is a member,9.97,FALSE,FALSE,90,BODY
+13,"or within one year after he ceases to be a member, for payment of the debts and liabilities of",9.97,FALSE,FALSE,94,BODY
+13,the company or of such debts and liabilities as may have been contracted before he ceases to,9.97,FALSE,FALSE,92,BODY
+13,"be a member, as the case may be; and",9.97,FALSE,FALSE,36,BODY
+13,"( B ) to the costs, charges and expenses of winding up and for adjustment of the rights of the",9.97,FALSE,FALSE,94,BODY
+13,contributories among themselves;,9.97,FALSE,FALSE,32,BODY
+13,"( e ) in the case of a company having a share capital, —",9.97,FALSE,FALSE,56,BODY
+13,( i ) the amount of share capital with which the company is to be registered and the division,9.97,FALSE,FALSE,93,BODY
+13,thereof into shares of a fixed amount and the number of shares which the subscribers to the,9.97,FALSE,FALSE,91,BODY
+13,memorandum agree to subscribe which shall not be less than one share; and,9.97,FALSE,FALSE,73,BODY
+13,"( ii ) the number of shares each subscriber to the memorandum intends to take, indicated opposite",9.97,FALSE,FALSE,97,BODY
+13,his name;,9.97,FALSE,FALSE,9,BODY
+13,"( f ) in the case of One Person Company, the name of the person who, in the event of death of the",9.97,FALSE,FALSE,97,BODY
+13,"subscriber, shall become the member of the company.",9.97,FALSE,FALSE,51,BODY
+13,( 2 ) The name stated in the memorandum shall not —,9.97,FALSE,FALSE,51,BODY
+13,( a ) be identical with or resemble too nearly to the name of an existing company registered under,9.97,FALSE,FALSE,98,BODY
+13,this Act or any previous company law; or,9.97,FALSE,FALSE,40,BODY
+13,( b ) be such that its use by the company —,9.97,FALSE,FALSE,43,BODY
+13,( i ) will constitute an offence under any law for the time being in force; or,9.97,FALSE,FALSE,78,BODY
+13,( ii ) is undesirable in the opinion of the Central Government.,9.97,FALSE,FALSE,63,BODY
+13,"( 3 ) Without prejudice to the provisions of sub-section ( 2 ), a company shall not be registered with a",9.97,FALSE,FALSE,104,BODY
+13,name which contains —,9.97,FALSE,FALSE,21,BODY
+13,( a ) any word or expression which is likely to give the impression that the company is in any way,9.97,FALSE,FALSE,98,BODY
+13,"connected with, or having the patronage of, the Central Government, any State Government, or any",9.97,FALSE,FALSE,96,BODY
+13,"local authority, corporation or body constituted by the Central Government or any State Government",9.97,FALSE,FALSE,98,BODY
+13,under any law for the time being in force; or,9.97,FALSE,FALSE,45,BODY
+13,"1. Ins. by Act 1 of 2018, s. 3 (w.e.f. 9-2-2018).",8.12,FALSE,FALSE,49,BODY
