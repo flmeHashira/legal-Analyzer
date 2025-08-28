@@ -1,295 +1,413 @@
-# -*- coding: utf-8 -*-
-import pdfplumber
-import joblib
-from itertools import groupby
-from operator import itemgetter
+# Minimal, readable starter you can run today
+# - Extracts lines (with bbox) from PDF using pdfplumber
+# - Detects numbering prefixes
+# - Infers levels from numbering or font-size buckets
+# - Merges lines into blocks (HEADING / PARAGRAPH / LIST_ITEM)
+# - Builds section_path via a heading/list stack
+# - Exports compact JSON + document.txt with char spans for highlightability
+#
+# Usage:
+#   pip install pdfplumber==0.11.0 rapidfuzz==3.9.6
+#   python legal_parser_minimal.py input.pdf out_dir/
+#
+# Notes:
+# - This is intentionally simple and well-commented. Tighten heuristics as you go.
+# - pdfplumber "size" attr availability can vary; we request it explicitly via extra_attrs.
+# - If your PDF has weird fonts or no sizes, the font-rank fallback still works (rank uniques).
+
+from __future__ import annotations
 import json
-import re
+import math
 import os
-from pathlib import Path
+import re
+import sys
+from dataclasses import dataclass, field, asdict
+from enum import Enum
+from typing import Any, Dict, List, Optional, Tuple
 
-# ========= CONFIG =========
-PDF_PATH = "sample/exhibit101.pdf"         # <-- your input PDF
-MODEL_PATH = "line_classifier_v2.pkl"       # <-- trained (model, label_encoder)
-TOLERANCE = 3                            # vertical grouping tolerance
-SAVE_STRUCTURED = True                   # also save hierarchical JSON for debugging
-STRUCTURED_OUT = "structured_output.json"
-COMPACT_OUT = "compact_output.json"
-# ==========================
+import pdfplumber
 
-# ---------- Helpers: noise filtering + continuation detection ----------
-SENT_END = (".", "?", "!")
-CONNECTOR_RE = re.compile(
-    r"^(and|or|but|to|of|for|with|as|by|under|in|on|at|from|that|which|who|whom|whose|because|since|so|if|then)\b",
-    re.IGNORECASE,
-)
+# --------------------------
+# Config knobs (tweak here)
+# --------------------------
+X_ALIGN_TOL = 8.0       # px tolerance for considering lines aligned (same paragraph)
+FONT_SIZE_TOL = 1.25    # pt tolerance when merging lines
+Y_CLUSTER_TOL = 3.0     # px tolerance to cluster words into a single line
+INDENT_BUCKET = 36.0    # px per indent level for lists
 
-def _is_noise_clause(text: str) -> bool:
-    """
-    Filter obvious page/footnote crumbs that bloat counts.
-    """
-    s = (text or "").strip()
-    if not s:
-        return True
-    if s.lower() in {"st", "nd", "rd", "th"}:
-        return True
-    if re.fullmatch(r"\d{1,3}", s):                      # bare small number (likely page/footnote)
-        return True
-    if re.fullmatch(r"[ivxlcdm]+\)?", s.lower()):        # lone roman numeral
-        return True
-    if len(s) <= 5 and re.fullmatch(r"\*?\d+\.?.*", s):  # "*1.", "1.", "2)"
-        return True
-    return False
+# --------------------------
+# Regexes for numbering
+# --------------------------
+DECIMAL_RE = re.compile(r"^(\d+(?:\.\d+)*[\.)]?)\s+")
+UPPER_ALPHA_RE = re.compile(r"^([A-Z][\.)])\s+")
+LOWER_ALPHA_PAREN_RE = re.compile(r"^(\([a-z]\))\s+")
+ROMAN_RE = re.compile(r"^(?:\(?([ivxlcdm]+)\)?[\.)]?)\s+", re.IGNORECASE)
+BULLET_RE = re.compile(r"^([-•●○▪︎])\s+")
 
-def _looks_like_continuation(prev: str, cur: str) -> bool:
-    """
-    Decide if current line is a continuation of the previous one (join them).
-    """
-    if not prev:
-        return False
-    if prev.rstrip().endswith(SENT_END):
-        return False
+class BlockType(str, Enum):
+    META = "META"
+    HEADING = "HEADING"
+    PARAGRAPH = "PARAGRAPH"
+    LIST_ITEM = "LIST_ITEM"
+    TABLE = "TABLE"
+    FOOTNOTE = "FOOTNOTE"
+    SIGNATURE = "SIGNATURE"
+    EXHIBIT = "EXHIBIT"
 
-    c = (cur or "").lstrip()
-    # punctuation/closing bracket/semicolon/colon starts → continuation
-    if re.match(r"^[,;:)\]]", c):
-        return True
-    # lowercase start → continuation
-    if c[:1].islower():
-        return True
-    # connector words at start → continuation
-    if CONNECTOR_RE.match(c):
-        return True
-    return False
+@dataclass
+class Line:
+    page: int
+    text: str
+    x0: float
+    x1: float
+    top: float
+    bottom: float
+    font_size: float
+    is_bold: bool
+    is_upper: bool
+    numbering: Optional[str] = None
+    text_clean: Optional[str] = None
 
-# ---------- PDF word → line grouping ----------
-def extract_words(page):
-    return page.extract_words(extra_attrs=["fontname", "size"])
+@dataclass
+class Block:
+    block_id: str
+    block_type: BlockType
+    text: str
+    level: Optional[int] = None
+    numbering: Optional[str] = None
+    section_path: List[str] = field(default_factory=list)
+    role: Optional[str] = None
+    positions: Dict[str, Any] = field(default_factory=dict)
+    # internal
+    _member_lines: List[Line] = field(default_factory=list, repr=False)
 
-def group_words_into_lines(words, tolerance, page_num):
-    words_sorted = sorted(words, key=lambda w: (round(w["top"] / tolerance), w["x0"]))
-    grouped_lines = []
+# --------------------------
+# Utilities
+# --------------------------
 
-    for _, line_group in groupby(words_sorted, key=lambda w: round(w["top"] / tolerance)):
-        line_words = list(line_group)
-        line_words.sort(key=itemgetter("x0"))
+def detect_numbering_prefix(s: str) -> Tuple[Optional[str], str]:
+    t = s.lstrip()
+    for rx in (DECIMAL_RE, UPPER_ALPHA_RE, LOWER_ALPHA_PAREN_RE, ROMAN_RE, BULLET_RE):
+        m = rx.match(t)
+        if m:
+            # prefer the full matched token (group 1 if exists, else full)
+            token = m.group(1) if m.lastindex else m.group(0).strip()
+            stripped = t[m.end():]
+            return token, stripped
+    return None, t
 
-        text = " ".join(w["text"] for w in line_words).strip()
-        if not text:
-            continue
 
-        # Early filter for tiny non-words (prevents junk upstream)
-        if len(text) < 3 and not re.search(r"\w", text):
-            continue
+def looks_like_decimal(token: str) -> bool:
+    return bool(re.match(r"^\d+(?:\.\d+)*[\.)]?$", token))
 
-        font_sizes = [w.get("size", 0.0) for w in line_words]
-        font_names = [str(w.get("fontname", "")) for w in line_words]
-        avg_font_size = sum(font_sizes) / len(font_sizes) if font_sizes else 0.0
-        is_bold = any(("Bold" in f) or ("BoldMT" in f) or ("Black" in f) for f in font_names)
-        is_upper = text.isupper()
 
-        grouped_lines.append({
-            "page_num": page_num,
-            "text": text,
-            "avg_font_size": round(float(avg_font_size), 2),
-            "is_bold": int(bool(is_bold)),
-            "is_upper": int(bool(is_upper)),
-            "text_length": int(len(text)),
-        })
+def looks_like_lower_alpha_paren(token: str) -> bool:
+    return bool(re.match(r"^\([a-z]\)$", token))
 
-    return grouped_lines
 
-def extract_all_lines(pdf_path):
-    all_lines = []
+def looks_like_upper_alpha(token: str) -> bool:
+    return bool(re.match(r"^[A-Z][\.)]$", token))
+
+
+def looks_like_roman(token: str) -> bool:
+    return bool(re.match(r"^[ivxlcdm]+$", token, re.IGNORECASE))
+
+
+def looks_like_bullet(token: str) -> bool:
+    return token in {"-", "•", "●", "○", "▪︎"}
+
+
+def count_decimal_segments(token: str) -> int:
+    # "4.2.1" -> 3; strip trailing ")" or "." if any
+    cleaned = token.rstrip(").").strip()
+    return len(cleaned.split("."))
+
+
+def indent_to_level(x0: float, min_x0: float) -> int:
+    # Simple indent bucketing from the minimum left edge
+    return max(1, int(round((x0 - min_x0) / INDENT_BUCKET)) + 1)
+
+# --------------------------
+# Extraction
+# --------------------------
+
+def extract_lines(pdf_path: str) -> Tuple[List[Line], List[Tuple[float,float]]]:
+    lines: List[Line] = []
+    page_sizes: List[Tuple[float, float]] = []
     with pdfplumber.open(pdf_path) as pdf:
-        for page_num, page in enumerate(pdf.pages, start=1):
-            words = extract_words(page) or []
-            if words:
-                lines = group_words_into_lines(words, TOLERANCE, page_num)
-                all_lines.extend(lines)
-    return all_lines
+        for pageno, page in enumerate(pdf.pages):
+            page_sizes.append((page.width, page.height))
+            # request extra attrs so we can get font size
+            words = page.extract_words(
+                use_text_flow=True,
+                keep_blank_chars=False,
+                extra_attrs=["fontname", "size"],
+            )
+            # cluster words into lines by close 'top' values
+            rows: Dict[int, List[dict]] = {}
+            for w in words:
+                key = int(round(w["top"] / max(1.0, Y_CLUSTER_TOL)))
+                rows.setdefault(key, []).append(w)
+            for _, ws in sorted(rows.items(), key=lambda kv: min(w["top"] for w in kv[1])):
+                ws_sorted = sorted(ws, key=lambda w: w["x0"])  # left-to-right
+                text = " ".join(w["text"] for w in ws_sorted).strip()
+                x0 = min(w["x0"] for w in ws_sorted)
+                x1 = max(w["x1"] for w in ws_sorted)
+                top = min(w["top"] for w in ws_sorted)
+                bottom = max(w["bottom"] for w in ws_sorted)
+                sizes = [w.get("size") or 0.0 for w in ws_sorted]
+                font_size = sum(sizes) / len(sizes) if sizes else 0.0
+                fontnames = {w.get("fontname", "").lower() for w in ws_sorted}
+                is_bold = any("bold" in fn for fn in fontnames)
+                is_upper = text.isupper() and len(text) >= 3
+                numbering, clean = detect_numbering_prefix(text)
+                lines.append(Line(
+                    page=pageno,
+                    text=text,
+                    x0=x0,
+                    x1=x1,
+                    top=top,
+                    bottom=bottom,
+                    font_size=font_size,
+                    is_bold=is_bold,
+                    is_upper=is_upper,
+                    numbering=numbering,
+                    text_clean=clean,
+                ))
+    return lines, page_sizes
 
-# ---------- Load classifier ----------
-def load_classifier(model_path):
-    if not os.path.exists(model_path):
-        raise FileNotFoundError(f"❌ Model not found: {model_path}")
-    model, label_encoder = joblib.load(model_path)
-    return model, label_encoder
+# --------------------------
+# Classification (rule-based)
+# --------------------------
 
-def classify_lines(lines, model, label_encoder):
-    feature_cols = ["avg_font_size", "is_bold", "is_upper", "text_length"]
-    X = [[line[f] for f in feature_cols] for line in lines]
-    y_pred = model.predict(X)
-    labels = label_encoder.inverse_transform(y_pred)
-    for line, label in zip(lines, labels):
-        line["label"] = label
-    return lines
+def classify_line(line: Line, doc_font_ranks: Dict[float, int]) -> BlockType:
+    # Heading if: bold/upper OR font jump OR ends with ':' and short
+    size_rank = doc_font_ranks.get(round(line.font_size, 1), 99)
+    heading_hint = (
+        (line.is_bold or line.is_upper) or
+        (size_rank <= 2) or
+        (line.text_clean.endswith(":") and len(line.text_clean) < 80)
+    )
+    if heading_hint and len(line.text_clean) <= 140:
+        return BlockType.HEADING
 
-# ---------- Build hierarchical structure (HEADING/CHAPTER/TOPIC/BODY) ----------
-def build_structure(lines):
-    """
-    Builds the same structure you already had but with BODY paragraph merging and noise filtering.
-    """
-    structured = []
-    current_heading = None
-    current_chapter = None
-    current_topic = None
+    # List item if numbering exists or clear bullet
+    if line.numbering and (looks_like_bullet(line.numbering) or True):
+        return BlockType.LIST_ITEM
 
-    i = 0
-    n = len(lines)
-    while i < n:
-        line = lines[i]
-        label = line.get("label")
-        text = (line.get("text") or "").strip()
+    return BlockType.PARAGRAPH
 
-        if label == "CHAPTER":
-            # Merge two-line chapter titles like "CHAPTER II" + "PRELIMINARY"
-            next_line = lines[i + 1] if (i + 1) < n else None
-            if next_line:
-                next_text = (next_line.get("text") or "").strip()
-                # short, often ALL CAPS second line → join
-                if len(next_text) < 60 and (next_line.get("is_upper", 0) == 1):
-                    text = f"{text} – {next_text}"
-                    i += 1  # consume next line
+# --------------------------
+# Merging lines → blocks
+# --------------------------
 
-            current_chapter = {"chapter": text, "topics": []}
-            if current_heading is None:
-                current_heading = {"heading": None, "chapters": []}
-                structured.append(current_heading)
-            current_heading["chapters"].append(current_chapter)
-            current_topic = None
+def font_size_rank_map(lines: List[Line]) -> Dict[float, int]:
+    # rank unique sizes (desc): largest=1, next=2, ...
+    uniq = sorted({round(l.font_size, 1) for l in lines}, reverse=True)
+    return {size: i + 1 for i, size in enumerate(uniq)}
 
-        elif label == "HEADING":
-            current_heading = {"heading": text, "chapters": []}
-            structured.append(current_heading)
-            current_chapter = None
-            current_topic = None
 
-        elif label in ("TOPIC", "SECTION"):  # treat SECTION like TOPIC (title for a body block)
-            # Try to split inline topic/body if " – ", " — ", ":" present
-            if re.search(r"\s[–—:]\s", text):
-                topic_part, body_part = re.split(r"\s[–—:]\s", text, maxsplit=1)
-                current_topic = {"topic": topic_part.strip(), "body": []}
-                # seed first body paragraph with body_part (after filtering noise)
-                if body_part.strip() and not _is_noise_clause(body_part):
-                    current_topic["body"].append(body_part.strip())
-            else:
-                # Fallback: try a structure-based split if it starts with a number/keyword and is long
-                words = text.split()
-                if len(words) > 4 and (words[0][:1].isdigit() or words[0].lower().startswith("section")):
-                    split_point = min(4, len(words) - 1)
-                    topic_part = " ".join(words[:split_point])
-                    body_part = " ".join(words[split_point:])
-                    current_topic = {"topic": topic_part.strip(), "body": []}
-                    if body_part.strip() and not _is_noise_clause(body_part):
-                        current_topic["body"].append(body_part.strip())
-                else:
-                    current_topic = {"topic": text, "body": []}
+def merge_lines_to_blocks(lines: List[Line], page_sizes: List[Tuple[float,float]]) -> List[Block]:
+    ranks = font_size_rank_map(lines)
+    blocks: List[Block] = []
+    cur: Optional[Block] = None
 
-            if current_chapter is None:
-                if current_heading is None:
-                    current_heading = {"heading": None, "chapters": []}
-                    structured.append(current_heading)
-                current_chapter = {"chapter": None, "topics": []}
-                current_heading["chapters"].append(current_chapter)
+    def flush():
+        nonlocal cur
+        if cur is None:
+            return
+        # aggregate bbox + positions
+        page = cur._member_lines[0].page
+        x0 = min(l.x0 for l in cur._member_lines)
+        x1 = max(l.x1 for l in cur._member_lines)
+        top = min(l.top for l in cur._member_lines)
+        bottom = max(l.bottom for l in cur._member_lines)
+        pw, ph = page_sizes[page]
+        cur.positions = {
+            "page": page,
+            "bbox_pdf": [x0, top, x1, bottom],
+            "bbox_norm": [x0 / pw, top / ph, x1 / pw, bottom / ph],
+            "line_spans": [
+                {
+                    "page": l.page,
+                    "bbox_pdf": [l.x0, l.top, l.x1, l.bottom],
+                    "text": l.text_clean,
+                }
+                for l in cur._member_lines
+            ],
+        }
+        blocks.append(cur)
+        cur = None
 
-            current_chapter["topics"].append(current_topic)
+    block_id_seq = 1
+    for ln in lines:
+        btype = classify_line(ln, ranks)
+        if cur is None:
+            cur = Block(
+                block_id=f"b{block_id_seq:06d}",
+                block_type=btype,
+                text=ln.text_clean,
+                numbering=ln.numbering,
+            )
+            cur._member_lines.append(ln)
+            block_id_seq += 1
+            continue
+        # try to merge with current block when type and layout match
+        same_type = (cur.block_type == btype)
+        aligned = abs(cur._member_lines[-1].x0 - ln.x0) <= X_ALIGN_TOL
+        similar_size = abs(cur._member_lines[-1].font_size - ln.font_size) <= FONT_SIZE_TOL
+        if same_type and aligned and similar_size:
+            # concatenate with space; caller can refine punctuation logic later
+            cur.text = (cur.text + " " + ln.text_clean).strip()
+            if cur.numbering is None:
+                cur.numbering = ln.numbering
+            cur._member_lines.append(ln)
+        else:
+            flush()
+            cur = Block(
+                block_id=f"b{block_id_seq:06d}",
+                block_type=btype,
+                text=ln.text_clean,
+                numbering=ln.numbering,
+            )
+            cur._member_lines.append(ln)
+            block_id_seq += 1
 
-        elif label == "BODY":
-            if current_topic is None:
-                # Orphaned BODY → create a dummy topic
-                if current_chapter is None:
-                    if current_heading is None:
-                        current_heading = {"heading": None, "chapters": []}
-                        structured.append(current_heading)
-                    current_chapter = {"chapter": None, "topics": []}
-                    current_heading["chapters"].append(current_chapter)
-                current_topic = {"topic": None, "body": []}
-                current_chapter["topics"].append(current_topic)
+    flush()
+    return blocks
 
-            # Drop noise crumbs
-            if _is_noise_clause(text):
-                i += 1
-                continue
+# --------------------------
+# Level inference + section paths
+# --------------------------
 
-            # Merge with previous line if it looks like a continuation
-            if current_topic["body"]:
-                prev = current_topic["body"][-1]
-                if _looks_like_continuation(prev, text):
-                    current_topic["body"][-1] = (prev.rstrip() + " " + text.lstrip()).strip()
-                else:
-                    current_topic["body"].append(text)
-            else:
-                current_topic["body"].append(text)
+def infer_level(block: Block, min_x0_in_doc: float, doc_font_ranks: Dict[float, int]) -> Optional[int]:
+    tok = block.numbering
+    if tok:
+        if looks_like_decimal(tok):
+            return count_decimal_segments(tok)
+        if looks_like_lower_alpha_paren(tok):
+            return 1
+        if looks_like_roman(tok):
+            # assume nested roman under letters if any prior letter list exists (simplify)
+            return 2
+        if looks_like_upper_alpha(tok) or looks_like_bullet(tok):
+            # list top-level under current heading
+            return 1
+    # No numbering: headings by font rank, lists by indent, paragraphs null
+    if block.block_type == BlockType.HEADING:
+        # use first member line font size
+        if block._member_lines:
+            size = round(block._member_lines[0].font_size, 1)
+            return doc_font_ranks.get(size, 3)
+        return 3
+    if block.block_type == BlockType.LIST_ITEM and block._member_lines:
+        x0 = block._member_lines[0].x0
+        return indent_to_level(x0, min_x0_in_doc)
+    return None
 
-        # OTHER labels → ignore or treat as BODY (your dataset mainly uses above)
-        i += 1
 
-    return structured
+def assign_hierarchy(blocks: List[Block]) -> List[Block]:
+    if not blocks:
+        return blocks
+    min_x0 = min((l.x0 for b in blocks for l in b._member_lines), default=0.0)
+    ranks = font_size_rank_map([l for b in blocks for l in b._member_lines])
 
-# ---------- Compact for LLM (paragraph-level) ----------
-def flatten_and_merge_paragraphs(structured):
-    """
-    Produce paragraph-level records:
-      { "context": "Heading | Chapter", "topic": "<topic>", "text": "<merged paragraph>" }
-    Also merges consecutive rows with same context when previous paragraph doesn't end a sentence.
-    """
-    compact = []
-    for heading in structured:
-        heading_title = heading.get("heading")
-        for chapter in heading.get("chapters", []):
-            chapter_title = chapter.get("chapter")
-            context = None
-            if heading_title and chapter_title:
-                context = f"{heading_title} | {chapter_title}"
-            else:
-                context = heading_title or chapter_title
+    stack: List[Tuple[str, int]] = []  # (key, level)
 
-            for topic in chapter.get("topics", []):
-                topic_title = topic.get("topic")
-                # Filter + join body lines into a paragraph
-                body_lines = [b.strip() for b in topic.get("body", []) if b and not _is_noise_clause(b)]
-                if not body_lines:
-                    continue
-                paragraph = " ".join(body_lines).strip()
+    def key_for(block: Block) -> str:
+        return block.numbering or normalize_heading_key(block.text)
 
-                row = {"context": context, "topic": topic_title, "text": paragraph}
+    for b in blocks:
+        L = infer_level(b, min_x0, ranks)
+        b.level = L
+        if b.block_type == BlockType.HEADING:
+            # pop same or deeper
+            while stack and stack[-1][1] >= (L or 1):
+                stack.pop()
+            stack.append((key_for(b), L or 1))
+            b.section_path = [k for (k, _) in stack]
+        elif b.block_type == BlockType.LIST_ITEM:
+            # list lives under current heading path; extend by its own key
+            base = [k for (k, _) in stack]
+            b.section_path = base + ([key_for(b)] if key_for(b) else [])
+        else:
+            # paragraph/table/footnote inherit current heading path
+            b.section_path = [k for (k, _) in stack]
+    return blocks
 
-                # Merge with previous if same context and previous doesn't end a sentence
-                if compact and compact[-1]["context"] == row["context"]:
-                    if not compact[-1]["text"].rstrip().endswith(SENT_END):
-                        compact[-1]["text"] = (compact[-1]["text"].rstrip() + " " + row["text"].lstrip()).strip()
-                        continue
-                compact.append(row)
-    return compact
+# --------------------------
+# Export JSON + document.txt with char spans
+# --------------------------
 
-# ---------- Main ----------
-def main():
-    if not os.path.exists(PDF_PATH):
-        raise FileNotFoundError(f"❌ File not found: {PDF_PATH}")
+def build_doc_text_and_spans(blocks: List[Block]) -> Tuple[str, Dict[str, Dict[str,int]]]:
+    buf = []
+    spans = {}
+    pos = 0
+    for b in blocks:
+        start = pos
+        buf.append(b.text)
+        pos += len(b.text)
+        # two newlines between blocks
+        buf.append("\n\n")
+        pos += 2
+        spans[b.block_id] = {"start": start, "end": pos - 2}
+        # also attach into positions for convenience
+        b.positions["char_span_doc"] = {"start": start, "end": pos - 2}
+    return "".join(buf), spans
 
-    # Load model
-    model, label_encoder = load_classifier(MODEL_PATH)
 
-    # Extract + classify
-    lines = extract_all_lines(PDF_PATH)
-    classified = classify_lines(lines, model, label_encoder)
+def export_document(pdf_path: str, out_dir: str, blocks: List[Block], page_count: int) -> None:
+    os.makedirs(out_dir, exist_ok=True)
+    doc_id = os.path.basename(pdf_path)
+    doc_text, _ = build_doc_text_and_spans(blocks)
 
-    # Build structure with BODY merging
-    structured = build_structure(classified)
+    payload = {
+        "document_id": doc_id,
+        "pages": page_count,
+        "blocks": [
+            {
+                **{k: v for k, v in asdict(b).items() if k != "_member_lines"},
+            }
+            for b in blocks
+        ],
+    }
 
-    # Save full structure (optional, for debugging)
-    if SAVE_STRUCTURED:
-        with open(STRUCTURED_OUT, "w", encoding="utf-8") as f:
-            json.dump(structured, f, indent=2, ensure_ascii=False)
+    with open(os.path.join(out_dir, "document.json"), "w", encoding="utf-8") as f:
+        json.dump(payload, f, ensure_ascii=False, indent=2)
 
-    # Build compact paragraph-level output
-    compact = flatten_and_merge_paragraphs(structured)
-    with open(COMPACT_OUT, "w", encoding="utf-8") as f:
-        json.dump(compact, f, indent=2, ensure_ascii=False)
+    with open(os.path.join(out_dir, "document.txt"), "w", encoding="utf-8") as f:
+        f.write(doc_text)
 
-    print(f"✅ Done.\n- Structured: {STRUCTURED_OUT if SAVE_STRUCTURED else '(skipped)'}\n- Compact: {COMPACT_OUT}\n"
-          f"Lines in: {len(lines)}  → Records out (compact): {len(compact)}")
+# --------------------------
+# Helpers
+# --------------------------
+
+def normalize_heading_key(text: str) -> str:
+    # Short, stable key for unnumbered headings
+    t = re.sub(r"\s+", " ", text.strip())
+    t = re.sub(r"[^A-Za-z0-9 ()\.-]", "", t)
+    return t[:60]
+
+
+# --------------------------
+# CLI
+# --------------------------
+
+def main(pdf_path: str, out_dir: str):
+    print(f"Processing {pdf_path}...")
+    lines, page_sizes = extract_lines(pdf_path)
+    blocks = merge_lines_to_blocks(lines, page_sizes)
+    blocks = assign_hierarchy(blocks)
+    export_document(pdf_path, out_dir, blocks, page_count=len(page_sizes))
+    print(f"✅ Done. Output saved to '{out_dir}'")
 
 if __name__ == "__main__":
-    main()
+    # Hardcoded file path and output directory
+    PDF_PATH = "sample/exhibit101.pdf"
+    OUT_DIR = "output/"
+    
+    if not os.path.exists(PDF_PATH):
+        print(f"❌ Error: Input file not found at '{PDF_PATH}'")
+        sys.exit(1)
+        
+    main(PDF_PATH, OUT_DIR)
