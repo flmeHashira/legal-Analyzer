@@ -289,7 +289,7 @@ def build_doc_text(blocks: List[Block]) -> str:
         start = pos
         path_str = ".".join(b.section_path) if b.section_path else "-"
         level_str = f"level={b.level}" if b.level else ""
-        # enriched metadata inline for LLM
+        # metadata inline for LLM
         segment = f"[[ {b.block_id} | {b.block_type} ]] {b.text}"
         buf.append(segment)
         pos += len(segment)
