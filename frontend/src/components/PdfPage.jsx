@@ -1,57 +1,87 @@
-import { useEffect, useRef } from "react"
+import { useEffect, useRef } from "react";
+import { pdfBBoxToViewportRect } from "@/lib/pdfBBoxToViewportRect";
 
-export default function PdfPage({ page, scale = 1.25 }) {
-  const canvasRef = useRef(null)
-  const renderTaskRef = useRef(null)
+export default function PdfPage({ page, scale = 1.25, highlights = [] }) {
+  const canvasRef = useRef(null);
+  const renderTaskRef = useRef(null);
 
   useEffect(() => {
-    if (!page) return
+    if (!page) return;
 
-    const canvas = canvasRef.current
-    const ctx = canvas.getContext("2d")
+    const canvas = canvasRef.current;
+    const ctx = canvas.getContext("2d");
 
-    const viewport = page.getViewport({ scale })
-    const dpr = window.devicePixelRatio || 1
+    const viewport = page.getViewport({ scale });
+    const dpr = window.devicePixelRatio || 1;
 
-    // Set real pixel size
-    canvas.width = Math.floor(viewport.width * dpr)
-    canvas.height = Math.floor(viewport.height * dpr)
+    canvas.width = Math.floor(viewport.width * dpr);
+    canvas.height = Math.floor(viewport.height * dpr);
+    canvas.style.width = `${viewport.width}px`;
+    canvas.style.height = `${viewport.height}px`;
 
-    // Set CSS size
-    canvas.style.width = `${viewport.width}px`
-    canvas.style.height = `${viewport.height}px`
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
-    ctx.clearRect(0, 0, canvas.width, canvas.height)
-
-    // IMPORTANT: cancel any in-flight render
     if (renderTaskRef.current) {
-      renderTaskRef.current.cancel()
+      renderTaskRef.current.cancel();
     }
 
-    const renderTask = page.render({
-        canvasContext: ctx,
-        viewport,
-    })
+    const task = page.render({
+      canvasContext: ctx,
+      viewport,
+    });
 
-    renderTask.promise.catch((err) => {
-        // Ignore expected cancellation
-        if (err?.name !== "RenderingCancelledException") {
-            console.error(err)
-        }
-    })
+    renderTaskRef.current = task;
 
-    renderTaskRef.current = renderTask
-
+    task.promise.catch((err) => {
+      if (err?.name !== "RenderingCancelledException") {
+        console.error("Render error:", err);
+      }
+    });
 
     return () => {
-      // cleanup on unmount / rerender
-      if (renderTaskRef.current) {
-        renderTaskRef.current.cancel()
-        renderTaskRef.current = null
-      }
-    }
-  }, [page, scale])
+      task.cancel();
+    };
+  }, [page, scale]);
 
-  return <canvas ref={canvasRef} />
+  if (!page) return null;
+
+  return (
+    <div
+      style={{
+        position: "relative",
+        marginBottom: 24,
+      }}
+    >
+      <canvas ref={canvasRef} />
+
+      {highlights.map((h) => {
+        const pageHeightPdf = page.view[3] - page.view[1];
+
+        const bboxes = h.bboxes ?? (h.bbox ? [h.bbox] : []);
+
+        return bboxes.map((bbox, idx) => {
+          const { left, top, width, height } = pdfBBoxToViewportRect(
+            bbox,
+            pageHeightPdf,
+            scale
+          );
+
+          return (
+            <div
+              key={`${h.id}-${idx}`}
+              style={{
+                position: "absolute",
+                left,
+                top,
+                width,
+                height,
+                background: "rgba(40,165,199,0.4)",
+                pointerEvents: "none",
+              }}
+            />
+          );
+        });
+      })}
+    </div>
+  );
 }
