@@ -1,50 +1,34 @@
-// import { useState } from 'react'
-// import reactLogo from './assets/react.svg'
-// import viteLogo from '/vite.svg'
-// import './App.css'
-
-// function App() {
-//   const [count, setCount] = useState(0)
-
-//   return (
-//     <>
-//       <div>
-//         <a href="https://vite.dev" target="_blank">
-//           <img src={viteLogo} className="logo" alt="Vite logo" />
-//         </a>
-//         <a href="https://react.dev" target="_blank">
-//           <img src={reactLogo} className="logo react" alt="React logo" />
-//         </a>
-//       </div>
-//       <h1>Vite + React</h1>
-//       <div className="card">
-//         <button onClick={() => setCount((count) => count + 1)}>
-//           count is {count}
-//         </button>
-//         <p>
-//           Edit <code>src/App.jsx</code> and save to test HMR
-//         </p>
-//       </div>
-//       <p className="read-the-docs">
-//         Click on the Vite and React logos to learn more
-//       </p>
-//     </>
-//   )
-// }
-
-// export default App
-
-
-import { Button } from "@/components/ui/button"
+import { useEffect, useState } from "react"
+import { usePdf } from "@/lib/usePdf"
+import PdfPage from "@/components/PdfPage"
 
 export default function App() {
+  const { getPage, numPages, loading } = usePdf("/exhibit101.pdf")
+  const [page, setPage] = useState(null)
+
+  useEffect(() => {
+    let cancelled = false
+
+    async function loadPage() {
+      if (!getPage || numPages === 0) return
+      const p = await getPage(1)
+      if (!cancelled) setPage(p)
+    }
+
+    loadPage()
+
+    return () => {
+      cancelled = true
+    }
+  }, [getPage, numPages])
+
+  if (loading || !page) {
+    return <div style={{ padding: 24 }}>Loading…</div>
+  }
+
   return (
-    <div className="p-6 space-y-4">
-      <Button>Default</Button>
-      <Button variant="destructive">Delete</Button>
-      <Button variant="outline">Outline</Button>
+    <div style={{ padding: 24 }}>
+      <PdfPage page={page} />
     </div>
   )
 }
-
-
