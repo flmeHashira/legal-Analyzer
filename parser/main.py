@@ -11,7 +11,6 @@
 #   python main.py
 #
 # Notes:
-# - This is intentionally simple and well-commented. Tighten heuristics as you go.
 # - pdfplumber "size" attr availability can vary; we request it explicitly via extra_attrs.
 # - If your PDF has weird fonts or no sizes, the font-rank fallback still works (rank uniques).
 
@@ -209,15 +208,28 @@ def merge_lines_to_blocks(lines: List[Line], page_sizes: List[Tuple[float, float
         x0, x1 = min(l.x0 for l in cur._member_lines), max(l.x1 for l in cur._member_lines)
         top, bottom = min(l.top for l in cur._member_lines), max(l.bottom for l in cur._member_lines)
         pw, ph = page_sizes[page]
+
+        bbox_pdf = [
+            x0,
+            ph - bottom,
+            x1 - x0,
+            bottom - top,
+        ]
         cur.positions = {
             "page": page,
-            "bbox_pdf": [x0, top, x1, bottom],
-            "bbox_norm": [x0 / pw, top / ph, x1 / pw, bottom / ph],
+            "bbox_pdf": bbox_pdf,
+            # "bbox_norm": bbox_norm,
             "line_spans": [
                 {
                     "page": l.page,
-                    "bbox_pdf": [l.x0, l.top, l.x1, l.bottom],
-                } for l in cur._member_lines
+                    "bbox_pdf": [
+                        l.x0,
+                        ph - l.bottom,
+                        l.x1 - l.x0,
+                        l.bottom - l.top,
+                    ],
+                }
+                for l in cur._member_lines
             ],
             "reading_order": reading_order,
         }
