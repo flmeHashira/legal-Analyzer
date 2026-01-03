@@ -1,6 +1,10 @@
 import FindingCard from "./FindingCard"
 
-export default function RightPane({ findings }) {
+export default function RightPane({
+  findings,
+  activeFindingId,
+  onSelectFinding,
+}) {
   if (!findings || findings.length === 0) {
     return (
       <div className="p-4 text-sm text-muted-foreground">
@@ -13,10 +17,13 @@ export default function RightPane({ findings }) {
     <div className="h-full overflow-y-auto p-4">
       {findings.map(finding => (
         <FindingCard
-          key={finding.finding_id}
-          finding={finding}
+            key={finding.finding_id}
+            finding={finding}
+            isActive={finding.finding_id === activeFindingId}
+            onClick={() => onSelectFinding(finding.finding_id)}
         />
-      ))}
+        ))}
+
     </div>
   )
 }

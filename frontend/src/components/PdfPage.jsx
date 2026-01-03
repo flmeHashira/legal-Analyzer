@@ -4,25 +4,51 @@ import { pdfBBoxToViewportRect } from "@/lib/pdfBBoxToViewportRect";
 function riskBaseColor(risk) {
   switch (risk) {
     case "high":
-      return "rgba(239, 68, 68, 0.28)";
+      return "rgba(239, 68, 68, 0.28)"
+
     case "medium":
-      return "rgba(245, 158, 11, 0.28)";
+      return "rgba(148, 163, 184, 0.28)" // slate-400-ish
+
     case "low":
-      return "rgba(59, 130, 246, 0.22)";
+      return "rgba(148, 163, 184, 0.18)"
+
     default:
-      return "rgba(100, 116, 139, 0.22)";
+      return "rgba(148, 163, 184, 0.22)"
   }
 }
 
-function activeOverlayStyle(isActive) {
-  if (!isActive) return {};
 
-  return {
-    outline: "2px solid rgba(239, 68, 68, 0.9)",
-    boxShadow: "0 0 0 2px rgba(239, 68, 68, 0.35)",
-    zIndex: 10,
-  };
+function activeOverlayStyle(isActive, risk) {
+  if (!isActive) return {}
+
+  switch (risk) {
+    case "high":
+      return {
+        boxShadow: "0 0 0 3px rgba(239, 68, 68, 0.35)",
+        zIndex: 10,
+      }
+
+    case "medium":
+      return {
+        boxShadow: "0 0 0 3px rgba(148, 163, 184, 0.35)",
+        zIndex: 10,
+      }
+
+    case "low":
+      return {
+        boxShadow: "0 0 0 2px rgba(148, 163, 184, 0.25)",
+        zIndex: 10,
+      }
+
+    default:
+      return {
+        boxShadow: "0 0 0 2px rgba(148, 163, 184, 0.25)",
+        zIndex: 10,
+      }
+  }
 }
+
+
 
 export default function PdfPage({
   page,
@@ -97,7 +123,7 @@ export default function PdfPage({
                 width,
                 height,
                 background: riskBaseColor(h.risk),  //base risk color (always visible)
-                ...activeOverlayStyle(isActive),    //additional styles if active
+                ...activeOverlayStyle(isActive, h.risk),    //additional styles if active
 
                 pointerEvents: "none",
               }}

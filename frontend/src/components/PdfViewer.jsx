@@ -12,6 +12,7 @@ export default function PdfViewer() {
   const { getPage, numPages } = usePdf("/exhibit101.pdf")
   const [pages, setPages] = useState([])    // 0-indexed page numbers
   const [scale, setScale] = useState(1.25)
+  const [activeFindingId, setActiveFindingId] = useState(null)
 
   const blockIndex = useBlockIndex(documentJson)    // blockIndex[block_id] -> { page, bboxes }
 
@@ -78,13 +79,17 @@ export default function PdfViewer() {
                 getPage={getPage}
                 scale={scale}
                 highlights={highlightsByPage[pageNumber] ?? []}
+                activeFindingId={activeFindingId} 
             />
             ))}
         </div>
 
         {/* Right pane (findings) */}
         <div className="w-[380px] border-l">
-            <RightPane findings={llmFindings} />
+            <RightPane
+                findings={llmFindings}
+                activeFindingId={activeFindingId}
+                onSelectFinding={setActiveFindingId}/>
         </div>
         </div>
     </div>

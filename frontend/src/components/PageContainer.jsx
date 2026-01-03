@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import PdfPage from "./PdfPage"
 
-export default function PageContainer({ pageNumber, getPage, scale, highlights }) {
+export default function PageContainer({ pageNumber, getPage, scale, highlights, activeFindingId }) {
   const [page, setPage] = useState(null)
 
   useEffect(() => {
@@ -18,5 +18,5 @@ export default function PageContainer({ pageNumber, getPage, scale, highlights }
     return <div style={{ height: 400 }} />
   }
 
-  return <PdfPage page={page} scale={scale} highlights={highlights} />
+  return <PdfPage page={page} scale={scale} highlights={highlights} activeFindingId={activeFindingId}/>
 }

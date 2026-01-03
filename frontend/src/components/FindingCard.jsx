@@ -7,11 +7,21 @@ import {
   AccordionContent,
 } from "@/components/ui/accordion";
 
-export default function FindingCard({ finding }) {
+export default function FindingCard({
+  finding,
+  isActive,
+  onClick,
+}) {
+
   const { risk, summary, explanation, triggers } = finding;
 
   return (
-    <Card className="mb-4">
+    <Card
+  onClick={onClick}
+  className={`mb-4 cursor-pointer transition
+    ${isActive ? "ring-2 ring-gray-500" : "hover:bg-muted/40"}
+  `}
+>
       <CardHeader className="space-y-2">
         <Badge variant={riskVariant(risk)}>{risk.toUpperCase()} RISK</Badge>
 
