@@ -27,9 +27,10 @@ HEADER_ZONE_PCT = 0.15
 FOOTER_ZONE_PCT = 0.15
 REPETITION_THRESHOLD = 0.30
 
-# Table Detection (The New Layer)
+# Table Detection
 MIN_TABLE_ROWS = 3         # Invariant: Must have at least 3 rows to be a "Table"
 MIN_COLUMNS_DETECTED = 2   # Invariant: Must have at least 2 aligned columns
+BANNER_TEXT_THRESHOLD = 30 # Chars: If a merged cell text > 30 chars, don't repeat it (Banner Heuristic)
 
 # --------------------------
 # Regexes
@@ -126,7 +127,7 @@ def format_table_to_markdown(table_data: List[List[Optional[str]]]) -> str:
 
 def fix_table_merges(table_data: List[List[Optional[str]]]) -> List[List[Optional[str]]]:
     """
-    Downstream repair logic.
+    Repair logic with Banner Detection.
     Priority: Vertical (Top-down) > Horizontal (Left-right).
     """
     if not table_data: 
@@ -143,7 +144,14 @@ def fix_table_merges(table_data: List[List[Optional[str]]]) -> List[List[Optiona
                     table_data[r][c] = table_data[r-1][c]
                 # 2. Fallback to Horizontal Fill (Look Left)
                 elif c > 0 and table_data[r][c-1] is not None:
-                    table_data[r][c] = table_data[r][c-1]
+                    # --- NEW: Banner Heuristic ---
+                    prev_text = table_data[r][c-1]
+                    # If text is long (> 30 chars), assume it's a banner spanning the row.
+                    # Don't repeat it to save tokens.
+                    if len(prev_text) > BANNER_TEXT_THRESHOLD:
+                        table_data[r][c] = "" 
+                    else:
+                        table_data[r][c] = prev_text
     return table_data
 
 # --------------------------
@@ -159,14 +167,10 @@ def validate_table_structure(words_in_box: List[dict]) -> bool:
     """
     Phase 2: Geometric Validation.
     Invariant: "A TABLE exists only if column alignment is observable across >= 3 rows."
-    
-    We compute this INDEPENDENTLY of pdfplumber's internal grid.
-    We project the start positions (x0) of all words and look for peaks.
     """
     if not words_in_box: return False
 
     # 1. Check Row Invariant
-    # Cluster words by Y position to count rows
     rows = set()
     for w in words_in_box:
         rows.add(int(round(w["top"] / Y_CLUSTER_TOL)))
@@ -175,29 +179,22 @@ def validate_table_structure(words_in_box: List[dict]) -> bool:
         return False
 
     # 2. Check Column Invariant
-    # Histogram of X-starts. We round to nearest X_ALIGN_TOL bucket.
     x_starts = []
     for w in words_in_box:
         x_starts.append(round(w["x0"] / X_ALIGN_TOL) * X_ALIGN_TOL)
     
-    # Count how many words align at specific X coordinates
     counts = Counter(x_starts)
-    
-    # A "Column" is defined as an X-position where at least 3 words start (indicating alignment)
-    # We need at least MIN_COLUMNS_DETECTED such alignments.
-    # (Adjust threshold=3 based on MIN_TABLE_ROWS if needed)
     valid_columns = sum(1 for count in counts.values() if count >= 3)
     
     return valid_columns >= MIN_COLUMNS_DETECTED
 
 def assess_table_quality(data: List[List[str]]) -> bool:
     """
-    Phase 3: Semantic Filtering (The old should_keep_table).
-    Only runs AFTER Geometric Validation passed.
+    Phase 3: Semantic Filtering.
     """
     if not data: return False
     
-    # 1. Reject 1-column tables (unless they passed strict geometry, but let's be safe)
+    # 1. Reject 1-column tables
     if len(data[0]) < 2: return False
 
     # 2. Reject empty/sparse tables
@@ -227,7 +224,6 @@ def extract_lines(pdf_path: str):
             page_sizes.append((page.width, page.height))
             
             # --- Step 0: Extract ALL words first (Ground Truth) ---
-            # We need these for independent validation
             words = page.extract_words(
                 use_text_flow=True, 
                 keep_blank_chars=False, 
@@ -235,8 +231,7 @@ def extract_lines(pdf_path: str):
                 extra_attrs=["fontname", "size"]
             )
             
-            # --- Step 1: Candidate Generation (Propose) ---
-            # Use pdfplumber as a "weak" candidate generator
+            # --- Step 1: Candidate Generation ---
             candidates = page.find_tables()
             
             valid_tables = []
@@ -244,30 +239,25 @@ def extract_lines(pdf_path: str):
 
             for t in candidates:
                 t_bbox = t.bbox
-                
-                # Filter words strictly inside this candidate box
                 words_inside = [w for w in words if is_inside_box(
                     (w["x0"], w["top"], w["x1"], w["bottom"]), t_bbox
                 )]
 
-                # --- Step 2: Geometric Validation (Validate) ---
-                # Does this look like a table based on word alignment?
+                # --- Step 2: Geometric Validation ---
                 if not validate_table_structure(words_inside):
                     continue
 
-                # --- Step 3: Semantic Filtering (Filter) ---
-                # Extract content only if geometry is solid
+                # --- Step 3: Semantic Filtering ---
                 data = t.extract()
                 if not assess_table_quality(data):
                     continue
 
-                # --- Step 4: Repair & Store (Extract) ---
+                # --- Step 4: Repair & Store ---
                 data = fix_table_merges(data)
                 valid_tables.append((t, data))
                 valid_bboxes.append(t_bbox)
             
             # --- Step 5: Integration ---
-            # Add Table Lines
             for t, data in valid_tables:
                 text_repr = format_table_to_markdown(data)
                 lines.append(Line(
@@ -277,7 +267,7 @@ def extract_lines(pdf_path: str):
                     text_clean=text_repr, is_table_placeholder=True
                 ))
 
-            # Add Word Lines (Excluding those inside confirmed tables)
+            # Add Word Lines
             valid_words = []
             for w in words:
                 w_box = (w["x0"], w["top"], w["x1"], w["bottom"])
@@ -314,37 +304,27 @@ def extract_lines(pdf_path: str):
 def detect_and_mark_artifacts(lines: List[Line], page_sizes: List[Tuple[float, float]]) -> List[str]:
     """
     Identifies headers and footers that repeat across pages and marks them.
-    Returns a list of unique artifact strings found.
     """
     if not lines: return []
     
-    # 1. Frequency Analysis in Zones
     zone_texts = Counter()
     total_pages = len(page_sizes)
     
-    # Only run frequency check if we have enough pages to form a pattern
     if total_pages >= 2:
         for line in lines:
             if line.is_table_placeholder: continue
-            
             ph = page_sizes[line.page][1]
             is_top = line.top < (ph * HEADER_ZONE_PCT)
             is_bottom = line.bottom > (ph * (1.0 - FOOTER_ZONE_PCT))
-            
             if is_top or is_bottom:
                 zone_texts[line.text.strip()] += 1
 
-    # 2. Determine Artifacts
-    # A text is an artifact if it appears on > 30% of pages (or at least 2 pages if doc is small)
     threshold = max(2, total_pages * REPETITION_THRESHOLD)
     artifact_set = {t for t, count in zone_texts.items() if count >= threshold}
-    
     unique_artifacts = []
 
-    # 3. Mark Lines
     for line in lines:
         if line.is_table_placeholder: continue
-        
         txt = line.text.strip()
         ph = page_sizes[line.page][1]
         is_in_zone = (line.top < ph * HEADER_ZONE_PCT) or (line.bottom > ph * (1.0 - FOOTER_ZONE_PCT))
