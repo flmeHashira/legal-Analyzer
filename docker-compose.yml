@@ -6,8 +6,11 @@ services:
     volumes:
       - ./backend:/app
       - /app/node_modules
+      - shared-data:/app/uploads
     depends_on:
       - parser
+    environment:
+      - PARSER_URL=http://parser:4000
 
   parser:
     build: ./parser
@@ -15,3 +18,8 @@ services:
       - "4000:4000"
     volumes:
       - ./parser:/app
+      - shared-data:/app/uploads
+    # No environment vars needed for Presidio anymore
+
+volumes:
+  shared-data:

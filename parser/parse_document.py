@@ -8,6 +8,8 @@ from enum import Enum
 from collections import Counter
 from typing import Any, Dict, List, Optional, Tuple
 
+from redactor import PresidioRedactor
+from registry import RedactionRegistry
 import pdfplumber
 
 # --------------------------
@@ -477,6 +479,37 @@ def build_doc_text(blocks: List[Block], artifacts: List[str]) -> str:
             
     return "".join(buf)
 
+# --------------------------
+# Redact
+# --------------------------
+def batch_redact_blocks(blocks: List[Block]) -> Tuple[List[Block], Dict]:
+    redactor = PresidioRedactor()
+    
+    # Initialize a fresh Registry for this document
+    # This ensures PERSON_1 resets for every new PDF uploaded
+    registry = RedactionRegistry()
+    
+    print(f"🔒 Starting Consistent PII Redaction on {len(blocks)} blocks...")
+    count = 0
+    
+    for block in blocks:
+        if block.block_type == BlockType.META:
+            continue
+            
+        # Pass the registry to the redactor
+        cleaned_text = redactor.redact(block.text, registry)
+        
+        if cleaned_text != block.text:
+            block.text = cleaned_text
+            count += 1
+            
+    print(f"✅ Redaction Complete. Replaced secrets in {count} blocks.")
+    
+    # Return the Vault from the registry
+    return blocks, registry.vault
+
+
+# Main Entry Point
 def main(pdf_path: str, out_dir: str):
     print(f"Processing {pdf_path}...")
     lines, page_sizes = extract_lines(pdf_path)
@@ -485,9 +518,16 @@ def main(pdf_path: str, out_dir: str):
     print(f"👻 Detected {len(artifacts)} repetitive header/footer artifacts.")
     
     blocks = merge_lines_to_blocks(lines, page_sizes)
+
+    # --- FIX IS HERE: Unpack the tuple ---
+    blocks, redaction_map = batch_redact_blocks(blocks)
+    # -------------------------------------
+
     blocks = assign_hierarchy(blocks)
     
     os.makedirs(out_dir, exist_ok=True)
+    
+    # 1. Save the Document Structure (Sanitized)
     with open(os.path.join(out_dir, "document.json"), "w", encoding="utf-8") as f:
         json.dump({
             "document_id": os.path.basename(pdf_path),
@@ -496,12 +536,20 @@ def main(pdf_path: str, out_dir: str):
             "blocks": [asdict(b) for b in blocks]
         }, f, ensure_ascii=False, indent=2)
     
+    # 2. Save the Text (Sanitized)
     with open(os.path.join(out_dir, "document.txt"), "w", encoding="utf-8") as f:
         f.write(build_doc_text(blocks, artifacts))
+        
+    # 3. Save the Vault (The Redaction Map)
+    map_path = os.path.join(out_dir, "redaction_map.json")
+    with open(map_path, "w", encoding="utf-8") as f:
+        json.dump(redaction_map, f, indent=2, ensure_ascii=False)
+
     print(f"✅ Done. Output saved to '{out_dir}'")
 
+
 if __name__ == "__main__":
-    PDF_PATH = sys.argv[1] if len(sys.argv) > 1 else "sample/seating.pdf"
+    PDF_PATH = sys.argv[1] if len(sys.argv) > 1 else "sample/pii_test_document.pdf"
     OUT_DIR = "output/"
     if not os.path.exists(PDF_PATH):
         print(f"❌ Error: {PDF_PATH} not found"); sys.exit(1)
