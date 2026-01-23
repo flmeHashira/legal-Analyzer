@@ -510,7 +510,7 @@ def batch_redact_blocks(blocks: List[Block]) -> Tuple[List[Block], Dict]:
 
 
 # Main Entry Point
-def main(pdf_path: str, out_dir: str):
+def parse_pdf(pdf_path: str, out_dir: str):
     print(f"Processing {pdf_path}...")
     lines, page_sizes = extract_lines(pdf_path)
     
@@ -553,4 +553,4 @@ if __name__ == "__main__":
     OUT_DIR = "output/"
     if not os.path.exists(PDF_PATH):
         print(f"❌ Error: {PDF_PATH} not found"); sys.exit(1)
-    main(PDF_PATH, OUT_DIR)
+    parse_pdf(PDF_PATH, OUT_DIR)

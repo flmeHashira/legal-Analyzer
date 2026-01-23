@@ -9,8 +9,14 @@ services:
       - shared-data:/app/uploads
     depends_on:
       - parser
+      - db 
     environment:
+      - NODE_ENV=${NODE_ENV}
+      - JWT_SECRET=${JWT_SECRET}
       - PARSER_URL=http://parser:4000
+      - DATABASE_URL=postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB}
+      - VAULT_KEY=${VAULT_KEY}
+      - DEV_USER_ID=${DEV_USER_ID}
 
   parser:
     build: ./parser
@@ -19,7 +25,32 @@ services:
     volumes:
       - ./parser:/app
       - shared-data:/app/uploads
-    # No environment vars needed for Presidio anymore
+    environment:
+      - DATABASE_URL=postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB}
+      - VAULT_KEY=${VAULT_KEY}
+
+  db:
+    image: postgres:15-alpine
+    restart: always
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=${POSTGRES_DB}
+      - DEV_USER_ID=${DEV_USER_ID}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+      - ./db:/docker-entrypoint-initdb.d
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
 
 volumes:
   shared-data:
+  postgres-data:

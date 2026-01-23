@@ -16,4 +16,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy the rest of the app
 COPY . .
-CMD ["python", "parse_document.py"]
+CMD ["python", "worker.py"]
