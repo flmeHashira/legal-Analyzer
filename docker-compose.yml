@@ -15,7 +15,6 @@ services:
       - JWT_SECRET=${JWT_SECRET}
       - PARSER_URL=http://parser:4000
       - DATABASE_URL=postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB}
-      - VAULT_KEY=${VAULT_KEY}
       - DEV_USER_ID=${DEV_USER_ID}
 
   parser:
@@ -27,7 +26,8 @@ services:
       - shared-data:/app/uploads
     environment:
       - DATABASE_URL=postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB}
-      - VAULT_KEY=${VAULT_KEY}
+      - RETENTION_HOURS=24
+      - CLEANUP_INTERVAL_SECONDS=300
 
   db:
     image: postgres:15-alpine
