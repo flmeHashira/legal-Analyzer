@@ -28,5 +28,5 @@ export default function PdfNavBar({
         <button onClick={onZoomIn}>+</button>
       </div>
     </div>
-  );
+  )
 }

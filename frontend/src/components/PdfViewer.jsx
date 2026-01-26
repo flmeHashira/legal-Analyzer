@@ -1,23 +1,23 @@
-import { useEffect, useRef, useState } from "react";
-import { usePdf } from "@/lib/usePdf";
-import PageContainer from "./PageContainer";
-import RightPane from "./RightPane";
-import documentJson from "@/data/document.runtime.json";
-import { useBlockIndex } from "@/hooks/useBlockIndex";
-import { useHighlightsFromFindings } from "@/hooks/useHighlightsFromFindings";
+import { useEffect, useRef, useState } from "react"
+import { usePdf } from "@/lib/usePdf"
+import PageContainer from "./PageContainer"
+import RightPane from "./RightPane"
+import documentJson from "@/data/document.runtime.json"
+import { useBlockIndex } from "@/hooks/useBlockIndex"
+import { useHighlightsFromFindings } from "@/hooks/useHighlightsFromFindings"
 
 export default function PdfViewer() {
-  const { getPage, numPages } = usePdf("/exhibit101.pdf");
+  const { getPage, numPages } = usePdf("/exhibit101.pdf")
 
-  const [pages, setPages] = useState([]); // 0-indexed
-  const [scale, setScale] = useState(1.25);
-  const [currentPage, setCurrentPage] = useState(0);
-  const [activeFindingId, setActiveFindingId] = useState(null);
+  const [pages, setPages] = useState([]) // 0-indexed
+  const [scale, setScale] = useState(1.25)
+  const [currentPage, setCurrentPage] = useState(0)
+  const [activeFindingId, setActiveFindingId] = useState(null)
 
-  const scrollRef = useRef(null);
-  const pageRefs = useRef({});
+  const scrollRef = useRef(null)
+  const pageRefs = useRef({})
 
-  const blockIndex = useBlockIndex(documentJson);
+  const blockIndex = useBlockIndex(documentJson)
 
   const [llmFindings] = useState([
     {
@@ -38,67 +38,67 @@ export default function PdfViewer() {
         "The executive warrants that no prior obligations conflict with this agreement, which could create exposure if inaccurate.",
       triggers: ["representations and warranties", "prior obligations"],
     },
-  ]);
+  ])
 
-  const highlightsByPage = useHighlightsFromFindings(blockIndex, llmFindings);
+  const highlightsByPage = useHighlightsFromFindings(blockIndex, llmFindings)
 
   useEffect(() => {
-    if (!numPages) return;
-    setPages(Array.from({ length: numPages }, (_, i) => i));
-  }, [numPages]);
+    if (!numPages) return
+    setPages(Array.from({ length: numPages }, (_, i) => i))
+  }, [numPages])
 
   // derive current page from scroll (largest visible area)
   useEffect(() => {
-    const el = scrollRef.current;
-    if (!el) return;
+    const el = scrollRef.current
+    if (!el) return
 
     const onScroll = () => {
-      const viewportTop = el.scrollTop;
-      const viewportBottom = viewportTop + el.clientHeight;
+      const viewportTop = el.scrollTop
+      const viewportBottom = viewportTop + el.clientHeight
 
-      let bestPage = currentPage;
-      let maxVisible = 0;
+      let bestPage = currentPage
+      let maxVisible = 0
 
       for (const [page, node] of Object.entries(pageRefs.current)) {
-        if (!node) continue;
+        if (!node) continue
 
-        const top = node.offsetTop;
-        const bottom = top + node.offsetHeight;
+        const top = node.offsetTop
+        const bottom = top + node.offsetHeight
         const visible =
-          Math.min(bottom, viewportBottom) - Math.max(top, viewportTop);
+          Math.min(bottom, viewportBottom) - Math.max(top, viewportTop)
 
         if (visible > maxVisible) {
-          maxVisible = visible;
-          bestPage = Number(page);
+          maxVisible = visible
+          bestPage = Number(page)
         }
       }
-      setCurrentPage(bestPage);
-    };
+      setCurrentPage(bestPage)
+    }
 
-    el.addEventListener("scroll", onScroll, { passive: true });
-    return () => el.removeEventListener("scroll", onScroll);
-  }, [currentPage]);
+    el.addEventListener("scroll", onScroll, { passive: true })
+    return () => el.removeEventListener("scroll", onScroll)
+  }, [currentPage])
 
   //scroll to page when a finding is selected (page-based)
   useEffect(() => {
-    if (!activeFindingId) return;
+    if (!activeFindingId) return
 
-    const finding = llmFindings.find((f) => f.finding_id === activeFindingId);
-    if (!finding || !finding.block_ids.length) return;
+    const finding = llmFindings.find((f) => f.finding_id === activeFindingId)
+    if (!finding || !finding.block_ids.length) return
 
-    const firstBlockId = finding.block_ids[0];
-    const block = blockIndex[firstBlockId];
-    if (!block) return;
+    const firstBlockId = finding.block_ids[0]
+    const block = blockIndex[firstBlockId]
+    if (!block) return
 
-    const page = block.page;
-    const pageEl = pageRefs.current[page];
-    if (!pageEl) return;
+    const page = block.page
+    const pageEl = pageRefs.current[page]
+    if (!pageEl) return
 
     pageEl.scrollIntoView({
       behavior: "smooth",
       block: "start",
-    });
-  }, [activeFindingId, llmFindings, blockIndex]);
+    })
+  }, [activeFindingId, llmFindings, blockIndex])
 
   return (
     <div className="h-screen flex overflow-hidden">
@@ -109,7 +109,7 @@ export default function PdfViewer() {
               <div
                 key={pageNumber}
                 ref={(el) => {
-                  if (el) pageRefs.current[pageNumber] = el;
+                  if (el) pageRefs.current[pageNumber] = el
                 }}
               >
                 <PageContainer
@@ -149,5 +149,5 @@ export default function PdfViewer() {
         />
       </div>
     </div>
-  );
+  )
 }

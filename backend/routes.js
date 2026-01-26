@@ -2,12 +2,9 @@ const express = require('express');
 const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
-const { Pool } = require('pg');
 const router = express.Router();
 
-const pool = new Pool({
-  connectionString: process.env.DATABASE_URL
-});
+const pool = require('./db');
 
 // Configure Shared Volume
 const storage = multer.diskStorage({

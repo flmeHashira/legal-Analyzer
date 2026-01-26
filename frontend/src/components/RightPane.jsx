@@ -1,4 +1,4 @@
-import FindingCard from "./FindingCard";
+import FindingCard from "./FindingCard"
 
 export default function RightPane({
   findings,
@@ -10,7 +10,7 @@ export default function RightPane({
       <div className="p-4 text-sm text-muted-foreground">
         No findings available.
       </div>
-    );
+    )
   }
 
   return (
@@ -24,5 +24,5 @@ export default function RightPane({
         />
       ))}
     </div>
-  );
+  )
 }

@@ -1,11 +1,11 @@
-import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card"
+import { Badge } from "@/components/ui/badge"
 import {
   Accordion,
   AccordionItem,
   AccordionTrigger,
   AccordionContent,
-} from "@/components/ui/accordion";
+} from "@/components/ui/accordion"
 
 export default function FindingCard({
   finding,
@@ -13,7 +13,7 @@ export default function FindingCard({
   onClick,
 }) {
 
-  const { risk, summary, explanation, triggers } = finding;
+  const { risk, summary, explanation, triggers } = finding
 
   return (
     <Card
@@ -48,18 +48,18 @@ export default function FindingCard({
         )}
       </CardContent>
     </Card>
-  );
+  )
 }
 
 function riskVariant(risk) {
   switch (risk) {
     case "high":
-      return "destructive";
+      return "destructive"
     case "medium":
-      return "secondary";
+      return "secondary"
     case "low":
-      return "outline";
+      return "outline"
     default:
-      return "secondary";
+      return "secondary"
   }
 }
