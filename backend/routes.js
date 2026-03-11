@@ -28,20 +28,38 @@ router.post('/upload', upload.single('pdf'), async (req, res) => {
   try {
     const userId = req.user.id; 
     const outputDirName = req.file.filename.replace('.pdf', '');
+    const originalName = req.file.originalname; //Grab the real name from Multer
 
     const query = `
-      INSERT INTO jobs (user_id, input_file, output_dir, status)
-      VALUES ($1, $2, $3, 'QUEUED')
+      INSERT INTO jobs (user_id, original_filename, input_file, output_dir, status)
+      VALUES ($1, $2, $3, $4, 'QUEUED')
       RETURNING id, status
     `;
-    const result = await pool.query(query, [userId, req.file.filename, outputDirName]);
     
-    console.log(`pb [API] Job Queued: ${result.rows[0].id}`);
+    // Add originalName to the array (matches $2)
+    const result = await pool.query(query, [userId, originalName, req.file.filename, outputDirName]);
+    
+    console.log(`[API] Job Queued: ${result.rows[0].id}`);
     res.status(202).json({ jobId: result.rows[0].id, status: 'QUEUED' });
 
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: 'Database error' });
+  }
+});
+
+// GET ALL JOBS: Populates the Home Page Feed
+router.get('/jobs', async (req, res) => {
+  try {
+    // 👈 Added original_filename to the SELECT query
+    const result = await pool.query(
+      'SELECT id, original_filename, input_file, status, page_count, created_at FROM jobs WHERE user_id = $1 ORDER BY created_at DESC',
+      [req.user.id]
+    );
+    res.json(result.rows);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Failed to fetch jobs' });
   }
 });
 
@@ -116,6 +134,39 @@ router.get('/jobs/:id/result', async (req, res) => {
     console.error("[DEBUG] CRASH:", err);
     res.status(500).json({ error: 'Internal Server Error' });
   }
+
+  // SERVE THE PDF FILE
+  router.get('/jobs/:id/pdf', async (req, res) => {
+    try {
+      const jobRes = await pool.query(
+        'SELECT input_file, status FROM jobs WHERE id = $1 AND user_id = $2',
+        [req.params.id, req.user.id]
+      );
+
+      if (jobRes.rows.length === 0) {
+          return res.status(404).json({ error: 'Job not found' });
+      }
+
+      if (jobRes.rows[0].status === 'PURGED') {
+          return res.status(410).json({ error: 'File deleted due to retention policy.' });
+      }
+
+      const fileName = jobRes.rows[0].input_file;
+      const filePath = path.join('/app/uploads', fileName);
+
+      if (!fs.existsSync(filePath)) {
+          console.error(`[DEBUG] Missing PDF File: ${filePath}`);
+          return res.status(500).json({ error: 'PDF missing on disk' });
+      }
+
+      res.contentType('application/pdf');
+      res.sendFile(filePath);
+
+    } catch (err) {
+      console.error("[DEBUG] CRASH:", err);
+      res.status(500).json({ error: 'Internal Server Error' });
+    }
+  });
 });
 
 module.exports = router;

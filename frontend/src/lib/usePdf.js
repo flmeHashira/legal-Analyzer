@@ -19,9 +19,14 @@ export function usePdf(fileUrl) {
 
     const load = async () => {
       try {
-        const loadingTask = getDocument(fileUrl)
+        const loadingTask = getDocument({
+          url: fileUrl,
+          withCredentials: true 
+        })
+
         const pdf = await loadingTask.promise
         if (cancelled) return
+
         pdfRef.current = pdf
         setNumPages(pdf.numPages)
         setLoading(false)

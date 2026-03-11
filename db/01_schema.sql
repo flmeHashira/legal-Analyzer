@@ -11,6 +11,7 @@ CREATE TABLE IF NOT EXISTS jobs (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     user_id UUID REFERENCES users(id),
     status VARCHAR(50) DEFAULT 'QUEUED',
+    original_filename VARCHAR(255),
     input_file VARCHAR(255),
     output_dir VARCHAR(255),
     page_count INTEGER DEFAULT 0,

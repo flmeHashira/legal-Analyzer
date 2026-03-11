@@ -1,13 +1,20 @@
 import { useEffect, useRef, useState } from "react"
+import { useParams } from "react-router-dom"
 import { usePdf } from "@/lib/usePdf"
 import PageContainer from "./PageContainer"
 import RightPane from "./RightPane"
-import documentJson from "@/data/document.runtime.json"
 import { useBlockIndex } from "@/hooks/useBlockIndex"
 import { useHighlightsFromFindings } from "@/hooks/useHighlightsFromFindings"
 
 export default function PdfViewer() {
-  const { getPage, numPages } = usePdf("/exhibit101.pdf")
+  const { id } = useParams()
+  const API_URL = import.meta.env.VITE_API_URL
+  const pdfUrl = `${API_URL}/jobs/${id}/pdf`
+
+  const { getPage, numPages } = usePdf(pdfUrl)
+
+  const [documentJson, setDocumentJson] = useState({ blocks: [] })
+  const [isDataLoading, setIsDataLoading] = useState(true)
 
   const [pages, setPages] = useState([]) // 0-indexed
   const [scale, setScale] = useState(1.25)
@@ -17,12 +24,32 @@ export default function PdfViewer() {
   const scrollRef = useRef(null)
   const pageRefs = useRef({})
 
+  useEffect(() => {
+    const fetchDocumentData = async () => {
+      try {
+        const response = await fetch(`${API_URL}/jobs/${id}/result`, {
+          credentials: "include"
+        })
+        if (response.ok) {
+          const data = await response.json()
+          setDocumentJson(data)
+        }
+      } catch (err) {
+        console.error("Failed to load document data:", err)
+      } finally {
+        setIsDataLoading(false)
+      }
+    }
+
+    fetchDocumentData()
+  }, [id, API_URL])
+
   const blockIndex = useBlockIndex(documentJson)
 
   const [llmFindings] = useState([
     {
       finding_id: "f001",
-      block_ids: ["b000001", "b000003", "b000004"],
+      block_ids: ["b000001", "b000003"],
       risk: "high",
       summary: "Restrictive employment obligations",
       explanation:
@@ -31,7 +58,7 @@ export default function PdfViewer() {
     },
     {
       finding_id: "f002",
-      block_ids: ["b000095", "b000096", "b000112"],
+      block_ids: ["b000032"],
       risk: "medium",
       summary: "Representations regarding conflicting obligations",
       explanation:
@@ -99,6 +126,10 @@ export default function PdfViewer() {
       block: "start",
     })
   }, [activeFindingId, llmFindings, blockIndex])
+
+  if (isDataLoading) {
+    return <div className="h-screen flex items-center justify-center">Loading document data...</div>
+  }
 
   return (
     <div className="h-screen flex overflow-hidden">
