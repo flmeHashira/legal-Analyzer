@@ -16,6 +16,9 @@ services:
       - PARSER_URL=http://parser:4000
       - DATABASE_URL=postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB}
       - DEV_USER_ID=${DEV_USER_ID}
+      - MAX_FILE_SIZE_MB=${MAX_FILE_SIZE_MB}
+      - USER_DAILY_DOC_LIMIT=${USER_DAILY_DOC_LIMIT}
+      - GLOBAL_DAILY_DOC_LIMIT=${GLOBAL_DAILY_DOC_LIMIT}
 
   parser:
     build: ./parser
@@ -26,6 +29,7 @@ services:
       - shared-data:/app/uploads
     environment:
       - DATABASE_URL=postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB}
+      - GROQ_API_KEY=${GROQ_API_KEY}
       - RETENTION_HOURS=24
       - CLEANUP_INTERVAL_SECONDS=300
 
