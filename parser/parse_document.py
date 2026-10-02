@@ -28,7 +28,7 @@ REPETITION_THRESHOLD = 0.30
 MIN_TABLE_ROWS = 3         
 MIN_COLUMNS_DETECTED = 2   
 BANNER_TEXT_THRESHOLD = 30
-MAX_DOC_CHARS = 80_000      # ~20k tokens, safe headroom for llama-3.3-70b-versatile
+MAX_DOC_CHARS = 80_000      # ~20k tokens, safe headroom for llama-3.3-70b-versatile (now openAI)
 
 # --------------------------
 # Regexes
@@ -430,7 +430,7 @@ def analyze_legal_document(doc_text_path: str) -> List[Dict]:
                     "content": document_text
                 }
             ],
-            model="llama-3.3-70b-versatile",
+            model="openai/gpt-oss-20b",
             temperature=0.1,
             max_tokens=4096,
             response_format={"type": "json_object"}

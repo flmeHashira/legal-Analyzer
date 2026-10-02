@@ -6,6 +6,20 @@ Built as a multi-service application with React, Node.js, PostgreSQL, Python, an
 
 > **Note:** This project provides automated document analysis and is not a substitute for professional legal advice.
 
+
+## Demo / Screenshots
+
+### 📸 High Risk Analysis
+![High Risk Analysis](assets/HighRisk.png)
+
+### 📸 Medium Risk Analysis
+![High Risk Analysis](assets/MediumRisk.png)
+
+### 📸 Landing Page
+![Landing Page](assets/LandingPage.png)
+
+
+
 ## Architecture
 
 ```mermaid
